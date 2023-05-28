@@ -2,26 +2,99 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+
+
+:root{
+  --mainHeader:#1b2841;
+  --paragraph:#626a79;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+
+.loginform{
+  background-color: #ebedf871;
+}
+
+
+.Logo{
+  font-weight: 700;
+  color: #4c4c6b;
+  font-size: 28px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 1px solid #e4e7eb;
+  background: #f8f8f8;
+  box-shadow: 3px 3px 10px #ebeef1;
+  letter-spacing: 1px;
+}
+
+
+.gray{
+  color: #bce0e0;
+}
+
+.paragraph{
+  font-size: 16px;
+  color: #6a6a7c;
+  font-weight: 500;
+}
+
+.smallHeading{
+  font-size: 26px;
+  font-weight: 700;
+  color: blue;
+}
+
+
+/* loader css style start here  */
+.lds-facebook {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-facebook div {
+  display: inline-block;
+  position: absolute;
+  left: 8px;
+  width: 16px;
+  background: #535d85;
+  animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+.lds-facebook div:nth-child(1) {
+  left: 8px;
+  animation-delay: -0.24s;
+}
+.lds-facebook div:nth-child(2) {
+  left: 32px;
+  animation-delay: -0.12s;
+}
+.lds-facebook div:nth-child(3) {
+  left: 56px;
+  animation-delay: 0;
+}
+@keyframes lds-facebook {
+  0% {
+    top: 8px;
+    height: 64px;
+  }
+  50%, 100% {
+    top: 24px;
+    height: 32px;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+
+.logo{
+  font-size: 25px;
+  font-weight: 400;
+  color: #215da1;
 }
+
+.links{
+  display: flex;
+  padding: 17px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: .2s;
+}
+
