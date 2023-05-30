@@ -98,3 +98,16 @@
   transition: .2s;
 }
 
+
+.a{
+  color: #4b4e503f;
+}
+
+.sidebar{
+  background-color: #3f3f4459;
+}
+
+.sidebar:hover{
+  background-color: #3f3f44;
+  
+}

@@ -1,18 +1,22 @@
-import Headers from "./Headers"
+import Headers from "./Headers";
+import SideBar from "./SideBar";
 
-const Layout = ({children}) => {
+const Layout = ({ children }) => {
   return (
     <>
-        <main>
-          <div className="">
-            <Headers/>
+      <main>
+        <div className="">
+          <Headers />
+        </div>
+        <div className="flex">
+          <div className="relative ">
+            <SideBar />
           </div>
-          <div className="">
-            {children}
-          </div>
-        </main>
+          <div style={{height:'calc(100vh - 55px)'}}  className="w-full overflow-auto ">{children}</div>
+        </div>
+      </main>
     </>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

@@ -1,54 +1,57 @@
+"use client"
+
 import Link from "next/link"
 import css from '../styles/Home.module.css'
 import { useEffect, useState } from "react"
 import { toast } from "react-hot-toast"
 import { useRouter } from "next/router"
-import { useDispatch } from "react-redux"
-import { getUser } from "@/ReduxStore/UserSlice"
+import { useDispatch, useSelector } from "react-redux"
+
 
 const Login = () => {
   const dispatch = useDispatch();
 
-
   const router = useRouter();
   const [loginData, setloginData] = useState({
-    email:'',
-    password:'',
+    email: '',
+    password: '',
   })
-
+  const [isLoading, setIsLoading] = useState(false)
   const GetUserData = (e) => {
-    setloginData((data) => ({...data, [e.target.name]:e.target.value}));
+    setloginData((data) => ({ ...data, [e.target.name]: e.target.value }));
   }
-  console.log(loginData)
-  const handleLoginData =async (e) => {
+  const handleLoginData = async (e) => {
     e.preventDefault();
-    try{
+    setIsLoading(true);
+    try {
       const res = await fetch('api/auth/login', {
         method: 'POST',
-        headers:{
+        headers: {
           "content-type": "application/json",
         },
-        body:JSON.stringify({
-          email:loginData.email,
-          password:loginData.password,
+        body: JSON.stringify({
+          email: loginData.email,
+          password: loginData.password,
         })
       })
 
-      const data =await res.json();
-      if(!data.success)  return toast.error(data.message);
+      const data = await res.json();
+      setIsLoading(false);
+      if (!data.success) return toast.error(data.message);
       toast.success(data.message);
       router.push('/')
-    }catch(err) {
-      return toast.error(err.message);
+    } catch (err) {
+      return toast.error(err.message,'internal error');
     }
   }
 
 
+
   return (
     <>
-         <div className={css.loginback}>
+      <div className={css.loginback}>
         <form
-          onChange={handleLoginData}
+          onSubmit={handleLoginData}
           style={{
             border: "1px solid whitesmoke",
             boxShadow: "4px 4px 10px #bce0e0",
@@ -65,8 +68,8 @@ const Login = () => {
               Email Address
             </label>
             <input
-            name="email"
-            onChange={(e) => GetUserData(e)}
+              name="email"
+              onChange={(e) => GetUserData(e)}
               className="px-4 py-2 w-full"
               type="email"
               placeholder="Email Address"
@@ -81,8 +84,8 @@ const Login = () => {
               Password
             </label>
             <input
-            onChange={(e) => GetUserData(e)}
-            name="password"
+              onChange={(e) => GetUserData(e)}
+              name="password"
               className="px-4 py-2 w-full"
               type="password"
               placeholder="Password"
@@ -90,7 +93,10 @@ const Login = () => {
             />
           </div>
           <button className="block m-auto py-3 px-7 bg-blue-500 mt-5 text-white rounded-md hover:bg-blue-600">
-            Submit
+            {
+              isLoading ? <span>Loading...</span> :
+                <span>Submit</span>
+            }
           </button>
           <br />
           <div className="text-center">

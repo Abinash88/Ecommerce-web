@@ -16,4 +16,4 @@ const buyerSchema = new mongoose.Schema({
     }
 });
 
-export const Buyers = mongoose.models.Buyers || mongoose.models('Buyers',buyerSchema);
+export const Buyers = mongoose.models.Buyers || mongoose.model('Buyers',buyerSchema);
