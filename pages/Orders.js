@@ -1,14 +1,16 @@
 import Layout from '@/components/Layout'
 import React from 'react'
 
-const Brands = () => {
+const Orders = () => {
   return (
     <>
     <Layout>
-        <div>Brands</div>
+        <div className='p-5'>
+          
+        </div>
     </Layout>
     </>
   )
 }
 
-export default Brands
+export default Orders

@@ -2,6 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     isToggle:true,
+    isAccount:false,
+    isCatagory:false,
 };
 
 const InitialToggle = createSlice({
@@ -10,9 +12,19 @@ const InitialToggle = createSlice({
     reducers:{
          Togglein(state) {
             state.isToggle = !state.isToggle;
+         },
+         AccountIn(state,action) {
+            if(action.payload === false) {
+                state.isAccount = action.payload
+            }else  {
+                state.isAccount = !state.isAccount;
+            }
+         },
+         OpenCatagory(state, action) {
+            state.isCatagory = !state.isCatagory;
          }
     }
 })
 
-export const {Togglein} = InitialToggle.actions
+export const {Togglein,AccountIn, OpenCatagory} = InitialToggle.actions
 export default InitialToggle.reducer;

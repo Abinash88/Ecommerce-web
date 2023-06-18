@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux"
 
 
 const Login = () => {
-  const dispatch = useDispatch();
+  const {user} = useSelector(state => state.user)
 
   const router = useRouter();
   const [loginData, setloginData] = useState({
@@ -45,6 +45,12 @@ const Login = () => {
     }
   }
 
+  useEffect(() => {
+    if(user.success){
+      router.push('/')
+    }
+  },[handleLoginData]);    
+
 
 
   return (
@@ -58,6 +64,7 @@ const Login = () => {
             padding: "30px 45px",
             borderRadius: "20px",
           }}
+          action={'#'}
           className="loginform flex flex-col rounded-md  items-center w-[400px] rounded-sm"
         >
           <h2 className="text-center text-[26px] font-bold text-gray-600 my-5">

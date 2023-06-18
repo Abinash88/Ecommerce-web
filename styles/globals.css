@@ -7,6 +7,7 @@
 :root{
   --mainHeader:#1b2841;
   --paragraph:#626a79;
+  --test : #e1fbff;
 }
 
 
@@ -111,3 +112,16 @@
   background-color: #3f3f44;
   
 }
+
+.switchBuyer{
+  @apply mb-4 py-2 text-center font-semibold text-[15px] border border-gray-500 hover:bg-gray-800 bg-gray-700 text-white rounded-md
+}
+
+input:focus{
+  outline: none;
+}
+
+/* .productGrid{
+  display: grid;
+
+} */

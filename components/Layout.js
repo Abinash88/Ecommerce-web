@@ -2,6 +2,7 @@ import Headers from "./Headers";
 import SideBar from "./SideBar";
 
 const Layout = ({ children }) => {
+
   return (
     <>
       <main>
