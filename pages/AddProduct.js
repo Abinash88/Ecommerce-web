@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRef, useState } from "react";
 import { toast } from "react-hot-toast";
 import { ArrowDownTrayIcon } from "@heroicons/react/24/outline";
-import axios from "axios";
+
 
 const AddProduct = () => {
   const clickImageFile = useRef(null);
@@ -23,15 +23,14 @@ const AddProduct = () => {
     const files = e.target?.files[0];
     const data = URL.createObjectURL(files);
     setimage(data);
-    // const base64 = await FileBase64(files)
     setfile(files)
   };
 
 
   const SubmitData = async (e) => {
     e.preventDefault();
-    
-    try { 
+
+    try {
       const formdata = new FormData();
       formdata.append('file', file);
       formdata.append('name', name);
@@ -42,7 +41,7 @@ const AddProduct = () => {
       formdata.append('catagory', catagory);
       const res = await fetch("http://localhost:3000/api/auth/ProductData", {
         method: 'POST',
-        body:formdata
+        body: formdata
       });
 
       const datas = await res.json();
@@ -78,6 +77,28 @@ const AddProduct = () => {
                 onSubmit={SubmitData}
                 className="flex w-[60%] items-start flex-col"
               >
+                <label
+                  className="text-[15px] font-semibold my-2 text-gray-600"
+                  htmlFor=""
+                >
+                  {" "}
+                  Products Image
+                </label>
+                <div className="">
+                  <input
+                    onChange={GetImageData}
+                    ref={clickImageFile}
+                    className="hidden"
+                    type="file"
+                  />
+                  <div
+                    onClick={getImage}
+                    className="w-[80px] h-[80px] border border-gray-400  bg-gray-100 hover:bg-gray-200 flex rounded-md items-center justify-center cursor-pointer"
+                  >
+                    <ArrowDownTrayIcon className="h-9 text-gray-700" />
+                  </div>
+                </div>
+
                 <label
                   className="text-[15px] font-semibold mt-2 text-gray-600"
                   htmlFor="name"
@@ -176,28 +197,9 @@ const AddProduct = () => {
                   placeholder="Price for cross..."
                 />
 
-                <label
-                  className="text-[15px] font-semibold my-2 text-gray-600"
-                  htmlFor=""
-                >
-                  {" "}
-                  Image
-                </label>
 
-                <div className="">
-                  <input
-                    onChange={GetImageData}
-                    ref={clickImageFile}
-                    className="hidden"
-                    type="file"
-                  />
-                  <div
-                    onClick={getImage}
-                    className="w-[80px] h-[80px] border border-gray-400  bg-gray-300 hover:bg-gray-400 flex rounded-md items-center justify-center cursor-pointer"
-                  >
-                    <ArrowDownTrayIcon className="h-9 text-gray-700" />
-                  </div>
-                </div>
+
+
                 <button
                   type="submit"
                   className="mt-4 py-3 px-5 rounded-sm text-white bg-green-600"
@@ -205,6 +207,8 @@ const AddProduct = () => {
                   Submit
                 </button>
               </form>
+
+
               <div className="p-5 flex-1 flex items-center justify-center ">
                 <div className="box overflow-hidden w-[250px] h-[320px] rounded-sm bg-gray-100">
                   <div className="w-full h-[50%]">
@@ -229,7 +233,7 @@ const AddProduct = () => {
                         : null
                         }`}
                     >
-                      {price?.length > 0 ? "$" : null}
+                      {price?.length > 0 ? "Rs." : null}
                       {price?.substring(0, 20)}{" "}
                     </h3>
                   </div>

@@ -33,7 +33,7 @@ const Products = () => {
     dispatch(updateGet(id));
   };
   
-  useEffect(() => {
+  useMemo(() => {
     dispatch(getProducts());
     }, [ProductCheck, setCheck]);
 
@@ -53,8 +53,13 @@ const Products = () => {
     }
   };
 
-  const isSelected = productDatas?.data?.some((item) => item.select);
+  const EditData = () => {
 
+  } 
+
+  const isSelected = productDatas?.data?.some((item) => item.select);
+  const isfind = productDatas?.data?.find((item) => item.select);
+  
   return (
     <>
       <Layout>

@@ -30,13 +30,13 @@ if(status==='loading'){
               <EllipsisHorizontalIcon onClick={() => dispatch(OpenCatagory())}  className='h-8 relative zindex-10 shadow-md cursor-pointer text-gray-500 hover:bg-gray-200 bg-gray-100 rounded-full'/>
             </div>
               <h3 className='text-[19px] text-blue-900 font-semibold'>Products</h3>
-              <div className="flex items-center space-x-3">
+              <div className=" items-center space-x-3 hidden md:flex">
                 <h5 className='text-gray-500 font-semibold text-[15px]'>View:</h5>
                 <TableCellsIcon onClick={() => setSetGrid(true)} className='h-8 cursor-pointer text-gray-400 hover:text-gray-500'/>
-                <ListBulletIcon onClick={() => setSetGrid(false)} className='h-8 cursor-pointer text-gray-400 hover:text-gray-500'/>
+                <ListBulletIcon onClick={() => setSetGrid(false)} className={` h-8 cursor-pointer text-gray-400 hover:text-gray-500`}/>
               </div>
           </div>
-            <div style={{height:'calc(100vh - 55px - 60px)'}} className={`w-full p-4 overflow-auto ${BuyerDatas?.length > 0 ? ` grid ${setGrid ? 'grid-cols-[repeat(auto-fill,minmax(200px,1fr))]  ' : 'grid grid-rows-auto'}  gap-4` : 'h-full'}`}>
+            <div style={{height:'calc(100vh - 55px - 60px)'}} className={`w-full p-4 overflow-auto ${BuyerDatas?.length > 0 ? ` grid ${setGrid ? 'grid-cols-[repeat(auto-fill,minmax(200px,1fr))]  ' : ' grid-rows-auto'}  gap-4` : 'h-full'}`}>
               {
                 BuyerDatas?.length > 0 ? BuyerDatas?.map((item) => {
                   return(

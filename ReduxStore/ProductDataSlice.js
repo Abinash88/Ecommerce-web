@@ -35,7 +35,6 @@ export const getProducts = createAsyncThunk('products/getProducts', async ()=> {
           }
         })
         const data =await res.json();
-        console.log()
         if(!data.success) return [];
         return data;
     }catch(err){

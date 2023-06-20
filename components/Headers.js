@@ -91,7 +91,7 @@ const Headers = () => {
               <li>
                 <Link
                   className={`links text-gray-600 hover:bg-blue-600 hover:text-white space-x-5 `}
-                  href={"/"}
+                  href={"/Home"}
                 >
                   <CursorArrowRippleIcon className="h-5 " />
                   Niches
