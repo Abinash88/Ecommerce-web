@@ -3,6 +3,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AccountIn } from "@/ReduxStore/ToggleSlice";
 import { useRouter } from "next/router";
+import { getProducts } from "@/ReduxStore/ProductDataSlice";
+import { getUser } from "@/ReduxStore/UserSlice";
 
 const SignUpBox = ({ AccountBtn, Logoutbox }) => {
   const loginboxOutClick = useRef(null);
@@ -12,6 +14,11 @@ const SignUpBox = ({ AccountBtn, Logoutbox }) => {
   const dispatch = useDispatch();
   const { isAccount } = useSelector((state) => state.toggle);
   const router = useRouter();
+
+  useEffect(() => {
+    dispatch(getUser());
+  },[]);
+
 
   const OpenFile = () => {
     inputImageFile.current.click();
@@ -40,11 +47,6 @@ const SignUpBox = ({ AccountBtn, Logoutbox }) => {
   }, []);
 
 
-  useEffect(() => {
-    if (!user.success) {
-      router.push('/')
-    }
-  }, [user]);
 
 
 

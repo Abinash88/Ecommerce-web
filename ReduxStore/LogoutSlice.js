@@ -35,7 +35,7 @@ export const LogoutHandler =createAsyncThunk('logout/LogoutHandler', async () =>
     const router = useRouter();
     try {
 
-        const res = await axios.get('api/auth/logout')
+        const res = await axios.get('http://localhost:3000/api/auth/logout')
         const data = res.data;
         console.log(data);
         if (!data.message) console.log(data.message);

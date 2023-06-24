@@ -15,7 +15,7 @@ const SideBar = () => {
     <>
       <div
         style={{ height: "calc(100vh - 54px)" }}
-        className={`relative ${pathname === '/'? 'hidden': ''} bg-gray-100 overflow-auto transition-left duration-300 overflow-hidden ${
+        className={`relative ${pathname === '/' || pathname === 'singleProductBox'? 'hidden': ''} bg-gray-100 overflow-auto transition-left duration-300 overflow-hidden ${
           isToggle ? "w-[300px] left-[0] p-3" : "w-[0px] left-[-100%] "
         }  shadow`}
       >

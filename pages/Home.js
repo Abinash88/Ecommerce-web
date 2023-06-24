@@ -4,16 +4,25 @@ import { Inter } from "next/font/google";
 import {useSelector } from "react-redux";
 import Loading from "./Loading";
 import Layout from "@/components/Layout";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const {status } = useSelector((state) => state.user);
-
-  // if (status === "loading") {
-  //   return <Loading />;
-  // }
+  const router = useRouter();
+  const { user, status } = useSelector((state) => state.user);
  
+  useEffect(() => {
+    console.log(status)
+    if(status === 'loading'){
+      return <Loading/>;
+    }
+    if (status === 'rejected') {
+      router.push('/')
+    }
+  }, [user]);
+
 
   return (
     <>

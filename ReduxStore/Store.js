@@ -5,6 +5,7 @@ import LogOutSlice  from "./LogoutSlice";
 import BuyersSlice from './FetchProductsSlice'
 import UserSlice from "./UserSlice";
 import ProductSlice from "./ProductDataSlice";
+import countsSlice  from "./AddProductSlice";
 
 const store = configureStore({
     reducer:{
@@ -13,7 +14,8 @@ const store = configureStore({
         productDatas:ProductSlice,
         update:updateSlice,
         logout:LogOutSlice,
-        buyersProduct:BuyersSlice
+        buyersProduct:BuyersSlice,
+        counts:countsSlice,
     }
 })
 

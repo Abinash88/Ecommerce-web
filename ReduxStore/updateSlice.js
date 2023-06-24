@@ -27,7 +27,7 @@ export default updateSlice.reducer;
 
 export const updateGet = createAsyncThunk('update/updateGet', async(id) => {
     try{
-        const res = await fetch(`/api/${id}`,{
+        const res = await fetch(`http://localhost:3000/api/${id}`,{
             method:'PUT',
 
         })
