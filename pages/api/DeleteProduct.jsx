@@ -13,10 +13,8 @@ const { middlewareError, ErrorMessage } = require("@/middleware/Error");
 
         const deleteimage = await cloudinary.uploader.destroy(publicId.image.public_id);
         let data = await Products.deleteMany({users:user._id, select:true});
-        console.log(deleteimage, 'image deleted successfully');
         if(!data) return ErrorMessage(res, 400, "Please Login first!")
         
-        console.log(data);
         res.status(200).json({success:true, message:"Deleted successfully"})
         
     });

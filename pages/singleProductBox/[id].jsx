@@ -10,7 +10,6 @@ const singleProductBox = () => {
   const router = useRouter();
   const id = router.query.id;
   const GetProductDetails = async (id) => {
-    console.log(id);
     try {
       const res = await fetch(`/api/ProductDetail/${id}`, {
         method: "GET",
@@ -28,7 +27,6 @@ const singleProductBox = () => {
 
   useEffect(() => {
     GetProductDetails(id).then((data) => {
-      console.log(data.Product)
       setProductDetail([data.Product])
     });
   },[]);
@@ -39,7 +37,6 @@ const singleProductBox = () => {
         <div className="">
         {
           ProductDetail?.map((item) => {
-            console.log(item);
               return <ProductDetailItem key={item?._id} item={item}/>
           })
         }

@@ -16,8 +16,11 @@ export const countsSlice = createSlice({
                 state.counts--;
             }
         },
+        TurnToZero(state, action) {
+            state.counts = 1;
+        }
     }
 })
 
-export const {Increase, Decrease} = countsSlice.actions;
+export const {Increase, Decrease, TurnToZero} = countsSlice.actions;
 export default countsSlice.reducer;

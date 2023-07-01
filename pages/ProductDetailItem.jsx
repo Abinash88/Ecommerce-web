@@ -1,4 +1,5 @@
-import { Decrease, Increase } from '@/ReduxStore/AddProductSlice';
+import { Decrease, Increase, TurnToZero } from '@/ReduxStore/AddProductSlice';
+import { GetCartData } from '@/ReduxStore/CartData';
 import { StarIcon } from '@heroicons/react/24/solid'
 import React from 'react'
 import { toast } from 'react-hot-toast';
@@ -8,28 +9,29 @@ const ProductDetailPage = ({item}) => {
   const dispatch = useDispatch();
   const {counts} = useSelector(state => state.counts)
 
-  const AddToCart =async (id) =>{
-    try{
-      const res = await fetch('http://localhost:3000/api/SetCartData', {
-        method: 'POST',
-        headers:{
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          counts,
-          id,
-        })
-      })
-
-      const data = await res.json();
-      if(!data.success) return toast.error(data.message);
-      console.log(data);
-      toast.success(data.message);
-
-    }catch(err){
-      console.log(err)
-    }
-  }
+  // adding data to cart 
+   const AddDataToCart = async (id) => {
+      try {
+            const res = await fetch('http://localhost:3000/api/SetCartData', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    counts,
+                    id,
+                })
+            })
+    
+            const data = await res.json();
+            if (!data.success) return toast.error(data.message);
+            toast.success(data.message);
+            dispatch(GetCartData());
+            dispatch(TurnToZero())
+        } catch (err) {
+            console.log(err)
+        }
+    }    
 
   return (
     <div className='w-[94%] mx-auto h-[80vh] relative mt-4 bg-gray-100 flex'>
@@ -59,7 +61,7 @@ const ProductDetailPage = ({item}) => {
             </div>
             <div className="my-4 space-x-3">
               <button  className='text-[16px] font-semibold w-[200px] py-2  bg-red-500 hover:bg-red-600 text-white '>Buy Now</button>
-              <button  onClick={() => AddToCart(item._id)} className='text-[16px] font-semibold w-[200px] py-2  bg-slate-500 hover:bg-slate-600 text-white '>Add To Cart</button>
+              <button  onClick={() => AddDataToCart(item._id)} className='text-[16px] font-semibold w-[200px] py-2  bg-slate-500 hover:bg-slate-600 text-white '>Add To Cart</button>
             </div>
           </div>
           <div className="">

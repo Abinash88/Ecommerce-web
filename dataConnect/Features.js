@@ -6,12 +6,12 @@ import multer from "multer"
 
 
 export const mongoDB = async () => {
-    const { connection } = await mongoose.connect(process.env.MONGO_URL, {
+   await mongoose.connect(process.env.MONGO_URL, {
         dbName: 'EcommerceDB',
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
-    console.log(`Database is connected to ${connection}`)
+    console.log(`Database is connected `)
 }
 
 

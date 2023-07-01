@@ -8,11 +8,11 @@ const SingleBuyerItem = ({ item, setGrid }) => {
  
   return (
     <div
-      className={`hover:shadow-lg cursor-pointer ${!setGrid ? "flex flex-start" : "h-[330px]"
-        } h-auto border rounded-sm `}
+      className={`hover:shadow-lg cursor-pointer ${!setGrid ? "flex flex-start " : "h-[350px]"
+        }  border  rounded-sm `}
     >
       <div
-        className={` ${!setGrid ? "w-[200px] h-[90%] my-auto ml-3" : "w-full h-[50%]"
+        className={`  ${!setGrid ? "w-[200px] h-[90%] my-auto ml-3" : "w-full h-[50%]"
           }`}
       >
         <img
@@ -21,6 +21,7 @@ const SingleBuyerItem = ({ item, setGrid }) => {
           alt=""
         />
       </div>
+      
       <div className={`p-2 ${!setGrid ? "w-[70%] p-6" : ""}`}>
         <div className="">
           <div className="flex justify-between">
@@ -54,7 +55,7 @@ const SingleBuyerItem = ({ item, setGrid }) => {
             </div>
           </div>
           <div className="flex justify-between">
-            <button className="text-[13px] hover:bg-gray-100 border  font-semibold py-1 rounded-sm px-2 mt-2">
+            <button  className="text-[13px] hover:bg-gray-100 border  font-semibold py-1 rounded-sm px-2 mt-2">
               Add To Cart
             </button>
             <span className="flex items-center">

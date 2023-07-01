@@ -26,5 +26,5 @@ const InitialToggle = createSlice({
     }
 })
 
-export const {Togglein,AccountIn, OpenCatagory} = InitialToggle.actions
+export const {Togglein, AccountIn, OpenCatagory} = InitialToggle.actions
 export default InitialToggle.reducer;

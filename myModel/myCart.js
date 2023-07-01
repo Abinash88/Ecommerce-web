@@ -9,6 +9,10 @@ const cartItem = new mongoose.Schema({
     items:{
         type:Number,
         required:true,
+    },
+    whislist:{
+        type:Boolean,
+        required:true,  
     }
 })
 
