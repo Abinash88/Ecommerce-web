@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Layout from "@/components/Layout";
+import Headers from "@/components/Headers";
+import ProductDetailItem from '@/pages/ProductDetailItem'
 
 const singleProductBox = () => {
-  const [ProductDetail, setProductDetail] = useState();
+  const [ProductDetail, setProductDetail] = useState([]);
 
   const router = useRouter();
   const id = router.query.id;
   const GetProductDetails = async (id) => {
-    console.log(id);
     try {
       const res = await fetch(`/api/ProductDetail/${id}`, {
         method: "GET",
@@ -26,14 +27,22 @@ const singleProductBox = () => {
 
   useEffect(() => {
     GetProductDetails(id).then((data) => {
-      console.log(data.prouct);
-    }, []);
-  });
-
+      setProductDetail([data.Product])
+    });
+  },[]);
   return (
-    <Layout>
-      
-    </Layout>
+    <>
+      <Headers/>
+      <div className="">
+        <div className="">
+        {
+          ProductDetail?.map((item) => {
+              return <ProductDetailItem key={item?._id} item={item}/>
+          })
+        }
+        </div>
+      </div>  
+    </>
   );
 };
 

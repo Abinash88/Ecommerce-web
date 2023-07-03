@@ -9,24 +9,19 @@ import { useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 import BuyerSideBar from "@/components/BuyerSideBar";
 import Layout from "@/components/Layout";
+import Headers from "@/components/Headers";
 
 const Home = () => {
-  const { status } = useSelector((state) => state.user);
-    const { BuyerDatas } = useSelector(state => state.productDatas)
-    const router = useRouter();
-
-  // if (status === "loading") {
-  //   return <Loading />;
-  // }
 
 
   return (
-    <Layout>
+    <>
+    <Headers/>
       <div style={{ height: 'calc(100vh - 55px )' }} className="flex overflow-">
         <BuyerSideBar />
         <BuyersFace />
       </div>
-    </Layout>
+    </>
   )
 }
 

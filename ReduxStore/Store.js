@@ -5,6 +5,9 @@ import LogOutSlice  from "./LogoutSlice";
 import BuyersSlice from './FetchProductsSlice'
 import UserSlice from "./UserSlice";
 import ProductSlice from "./ProductDataSlice";
+import countsSlice  from "./AddProductSlice";
+import CartDataSlice  from "./CartData";
+import CartItemSlice  from "./CartItem";
 
 const store = configureStore({
     reducer:{
@@ -13,8 +16,11 @@ const store = configureStore({
         productDatas:ProductSlice,
         update:updateSlice,
         logout:LogOutSlice,
-        buyersProduct:BuyersSlice
-    }
+        buyersProduct:BuyersSlice,
+        counts:countsSlice,
+        cartdata:CartDataSlice,
+        cartItem:CartItemSlice,
+    },
 })
 
 export default store;

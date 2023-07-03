@@ -5,7 +5,7 @@ import axios from "axios";
 
 const initialState = {
     user: [],
-    status: "idle",
+    status: null,
 };
 
 export const UserSlice = createSlice({
@@ -31,7 +31,7 @@ export default UserSlice.reducer;
 
 export const getUser = createAsyncThunk("User/getUser", async () => {
     try{
-        const res = await axios.get("api/ProfileData");
+        const res = await axios.get("http://localhost:3000/api/ProfileData");
         const data = res.data;
         if(!data.success)return [];
         return data;

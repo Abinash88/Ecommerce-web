@@ -7,10 +7,10 @@ const handler = middlewareError(async (req, res) => {
 
     if (req.method !== 'POST') return ErrorMessage(res, 400, "Only POST requests are allowed");
     const { email, password } = req.body;
-
     if (!email || !password) return ErrorMessage(res, 400, "please fill the following fields");
-
+    
     await mongoDB();
+    console.log(email, password)
 
     let user = await Buyers.findOne({ email });
     if (!user) return ErrorMessage(res, 400, "No  users found! Please sign up first");

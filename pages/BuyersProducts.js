@@ -14,7 +14,6 @@ const BuyersProducts = () => {
 
   useEffect(() => {
     dispatch(FetchBuyersProduct())
-    console.log('fetch buyers product')
   },[])
   
 

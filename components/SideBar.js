@@ -10,12 +10,11 @@ const SideBar = () => {
   const router = useRouter();
   const pathname = router.pathname;
 
-
   return (
     <>
       <div
         style={{ height: "calc(100vh - 54px)" }}
-        className={`relative ${pathname === '/'? 'hidden': ''} bg-gray-100 overflow-auto transition-left duration-300 overflow-hidden ${
+        className={`relative ${pathname === '/' || pathname === 'singleProductBox'? 'hidden': ''} bg-gray-100 overflow-auto transition-left duration-300 overflow-hidden ${
           isToggle ? "w-[300px] left-[0] p-3" : "w-[0px] left-[-100%] "
         }  shadow`}
       >
@@ -26,8 +25,8 @@ const SideBar = () => {
 
           <div className="flex items-center mt-3 ">
             <ul className="w-full">
-              <li className={`block cursor-pointer rounded-sm w-full font-semibold text-[15px] hover:bg-gray-100 ${pathname === '/' ? 'bg-gray-100' : ''}`}> 
-                <Link className=" block py-2 px-2"  href={"/"}>Admin</Link>
+              <li className={`block cursor-pointer rounded-sm w-full font-semibold text-[15px] hover:bg-gray-100 ${pathname === '/Home' ? 'bg-gray-100' : ''}`}> 
+                <Link className=" block py-2 px-2"  href={"/Home"}>Admin</Link>
               </li>
               <li className={`block cursor-pointer rounded-sm w-full font-semibold text-[15px] hover:bg-gray-100 ${pathname === '/Products' ? 'bg-gray-100' : ''}`}>
                 <Link className=" block py-2 px-2" href={"/Products"}>Products</Link>

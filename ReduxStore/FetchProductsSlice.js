@@ -29,7 +29,7 @@ export default BuyersSlice.reducer;
 
 export const FetchBuyersProduct = createAsyncThunk('buyersProduct/FetchBuyersProduct', async () => {
     try {
-        const res = await axios.get('/api/GetBuyersProduct');
+        const res = await axios.get('http://localhost:3000/api/GetBuyersProduct');
         const data = res.data
         if (!data.success) return [];
         return data.product;
