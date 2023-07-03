@@ -2,7 +2,7 @@ import mongoose from "mongoose"
 import { serialize } from "cookie"
 import Jwt from "jsonwebtoken"
 import { Buyers } from "@/myModel/buyers"
-import multer from "multer"
+// import multer from "multer"
 
 
 export const mongoDB = async () => {
