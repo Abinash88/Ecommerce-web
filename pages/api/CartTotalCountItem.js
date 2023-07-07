@@ -1,20 +1,13 @@
-import { Products } from "@/myModel/DataSchema";
 import { Cart } from "@/myModel/myCart";
 const { middlewareError, ErrorMessage } = require("@/middleware/Error");
 
 const handler = middlewareError(async (req, res) => {
     if (req.method !== "GET") return ErrorMessage(res, 400, 'GET method only supported')
     const {id} = req.headers;
+    console.log(id,'cart count');
     const cart = await Cart.find({userId:id});
-    console.log(id, cart);
-    const cartid = cart.map((item) => {
-        return item.product
-    })
-    const product = await Products.find({
-        _id: { $in: cartid }
-    })
-    res.status(200).json({ success: true, message: "Data added in cart successfully", product})
-
+   
+    res.status(200).json({ success: true, message: "Data added in cart successfully", CartItemCount:cart})
 })
 
 export default handler;

@@ -50,14 +50,9 @@ const SingleBuyerItem = ({ item, setGrid }) => {
                 {item?.description}
               </div>
             </div>
-            <div className="text-[12px] text-gray-500 font-semibold capitalize">
-              <h4>{item?.country}</h4>
-            </div>
+            
           </div>
           <div className="flex justify-between">
-            <button  className="text-[13px] hover:bg-gray-100 border  font-semibold py-1 rounded-sm px-2 mt-2">
-              Add To Cart
-            </button>
             <span className="flex items-center">
               <StarIcon className="h-2.5 text-red-500" />
               <StarIcon className="h-2.5 text-red-500" />
@@ -66,6 +61,9 @@ const SingleBuyerItem = ({ item, setGrid }) => {
               <StarIcon className="h-2.5 text-red-500" />
               <span className="text-[12px]  text-gray-500 ">(4)</span>
             </span>
+            <div className="text-[12px] text-gray-500 font-semibold capitalize">
+              <h4>{item?.country}</h4>
+            </div>
           </div>
         </div>
       </div>

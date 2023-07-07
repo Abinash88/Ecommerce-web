@@ -4,12 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { AccountIn } from "@/ReduxStore/ToggleSlice";
 import { useRouter } from "next/router";
 import { getUser } from "@/ReduxStore/UserSlice";
+import Loading from "@/pages/Loading";
 
 const SignUpBox = ({ AccountBtn, Logoutbox }) => {
   const loginboxOutClick = useRef(null);
   const [ImageBox, setImageBox] = useState("");
   const inputImageFile = useRef(null);
-  const { user } = useSelector((state) => state.user);
+  const { user, status } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const { isAccount } = useSelector((state) => state.toggle);
   const router = useRouter();
@@ -20,8 +21,8 @@ const SignUpBox = ({ AccountBtn, Logoutbox }) => {
   },[]);
 
   useEffect(() => {
-    if (!user.success) {
-      router.push('/')
+    if(status === 'loading') {
+      return <Loading/>
     }
   }, [user]);
 

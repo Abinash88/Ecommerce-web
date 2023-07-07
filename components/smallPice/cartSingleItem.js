@@ -43,7 +43,6 @@ const cartSingleItem = ({ item, cartItem }) => {
       const data = await res.json();
       if (!data.success) console.log(data.message);
       setNumbercount(data?.counts[0]?.items);
-      console.log(data);
     } catch (err) {
       console.log(err.message);
     }

@@ -6,6 +6,7 @@ import Loading from "./Loading";
 import Layout from "@/components/Layout";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import PleaseLoginPage from "./PleaseLoginPage";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,15 +19,13 @@ export default function Home() {
     if(status === 'loading'){
        <Loading/>;
     }
-    if (status === 'rejected') {
-      router.push('/')
-    }
   }, [user]);
 
 
 
   return (
     <>
+    {user.success ?
       <Layout>
         <div className={`${inter.className} p-5`}>
           <div className="mb-4 w-full rounded-md flex justify-between bg-yellow-100 p-2">
@@ -79,6 +78,9 @@ export default function Home() {
           <div className="w-full h-[300px] mt-5 rounded-sm bg-gray-100"></div>
         </div>
       </Layout>
+      : <PleaseLoginPage/>
+    }
+
     </>
   );
 }

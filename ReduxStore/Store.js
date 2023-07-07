@@ -7,6 +7,7 @@ import UserSlice from "./UserSlice";
 import ProductSlice from "./ProductDataSlice";
 import countsSlice  from "./AddProductSlice";
 import CartItemSlice  from "./CartItem";
+import GetCartCount from "./CartTotalCount";
 
 const store = configureStore({
     reducer:{
@@ -18,6 +19,7 @@ const store = configureStore({
         buyersProduct:BuyersSlice,
         counts:countsSlice,
         cartItem:CartItemSlice,
+        CartCountItem:GetCartCount
     },
 })
 
