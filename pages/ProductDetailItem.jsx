@@ -1,5 +1,6 @@
 import { Decrease, Increase, TurnToZero } from '@/ReduxStore/AddProductSlice';
 import { StarIcon } from '@heroicons/react/24/solid'
+import { useRouter } from 'next/router';
 import React from 'react'
 import { toast } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux'
@@ -11,6 +12,7 @@ const ProductDetailPage = ({item}) => {
 
   // adding data to cart 
    const AddDataToCart = async (id, userId) => {
+    if(!user.success) return toast.error('Login First')
       try {
             const res = await fetch('/api/SetCartData', {
                 method: 'POST',
@@ -61,7 +63,9 @@ const ProductDetailPage = ({item}) => {
             </div>
             <div className="my-4 space-x-3">
               <button  className='text-[16px] font-semibold w-[200px] py-2  bg-red-500 hover:bg-red-600 text-white '>Buy Now</button>
-              <button  onClick={() => AddDataToCart(item._id, user.user._id)} className='text-[16px] font-semibold w-[200px] py-2  bg-slate-500 hover:bg-slate-600 text-white '>Add To Cart</button>
+              <button  onClick={() => {
+                AddDataToCart(item?._id, user?.user?._id)
+              }} className='text-[16px] font-semibold w-[200px] py-2  bg-slate-500 hover:bg-slate-600 text-white '>Add To Cart</button>
             </div>
           </div>
           <div className="">
