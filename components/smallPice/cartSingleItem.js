@@ -1,18 +1,18 @@
-import { GetCartData } from "@/ReduxStore/CartData";
 import { getCartItem } from "@/ReduxStore/CartItem";
 import { TrashIcon, HeartIcon } from "@heroicons/react/24/outline";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const cartSingleItem = ({ item, cartItem }) => {
   const dispatch = useDispatch();
   const [numbercount, setNumbercount] = useState(0);
+  const { user } = useSelector((state) => state.user);
 
   // Delete cart item from cart
   const deleteCartData = async (id) => {
     try {
-      const res = await fetch("http://localhost:3000/api/DeleteCartItem", {
+      const res = await fetch("/api/DeleteCartItem", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -23,8 +23,7 @@ const cartSingleItem = ({ item, cartItem }) => {
       const data = await res.json();
       if (!data.success) return toast.error(data.message);
       toast.success(data.message);
-      dispatch(getCartItem());
-      dispatch(GetCartData());
+      dispatch(getCartItem(user?.user?._id));
     } catch (err) {
       console.log(err.message);
     }
@@ -33,14 +32,18 @@ const cartSingleItem = ({ item, cartItem }) => {
   // get the each cart items count number
   const getCartEachCountItem = async (id) => {
     try {
-      const res = await fetch(`http://localhost:3000/api/CartEachItem/${id}`, {
+      const res = await fetch(`/api/CartEachItem/${id}`, {
         method: "GET",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json",
+        id:user.user._id
+       },
+       
       });
 
       const data = await res.json();
       if (!data.success) console.log(data.message);
-      setNumbercount(data.counts[0].items);
+      setNumbercount(data?.counts[0]?.items);
+      console.log(data);
     } catch (err) {
       console.log(err.message);
     }
@@ -49,7 +52,7 @@ const cartSingleItem = ({ item, cartItem }) => {
   // adding the cart item count or increasing the number or product
   const AddItem = async (id) => {
     try {
-      const res = await fetch("http://localhost:3000/api/AddItem", {
+      const res = await fetch("/api/AddItem", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -59,7 +62,6 @@ const cartSingleItem = ({ item, cartItem }) => {
       const data = await res.json();
       if (!data.success) console.log(data.message);
       getCartEachCountItem(item._id);
-      dispatch(GetCartData());
     } catch (err) {
       console.log(err.message);
     }
@@ -67,7 +69,7 @@ const cartSingleItem = ({ item, cartItem }) => {
   // removing the cart item count or decreasing the number or product
   const LessItem = async (id) => {
     try {
-      const res = await fetch("http://localhost:3000/api/LessItem", {
+      const res = await fetch("/api/LessItem", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -77,7 +79,6 @@ const cartSingleItem = ({ item, cartItem }) => {
       const data = await res.json();
       if (!data.success) console.log(data.message);
       getCartEachCountItem(item._id);
-      dispatch(GetCartData());
     } catch (err) {
       console.log(err.message);
     }
@@ -104,7 +105,7 @@ const cartSingleItem = ({ item, cartItem }) => {
           </h5>
         </div>
 
-        <div className="flex-1 flex flex-row md:flex-col justify-between w-[96%] items-center md:justify-center  md:space-y-4 items-center">
+        <div className="flex-1 flex flex-row md:flex-col justify-between w-[96%] items-center md:justify-center  md:space-y-4">
           <h5 className="text-red-500 text-[14px] md:text-[18px]">
             {" "}
             Rs.{item?.price}

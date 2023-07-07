@@ -16,12 +16,13 @@ export default function Home() {
   useEffect(() => {
     console.log(status)
     if(status === 'loading'){
-      return <Loading/>;
+       <Loading/>;
     }
     if (status === 'rejected') {
       router.push('/')
     }
   }, [user]);
+
 
 
   return (

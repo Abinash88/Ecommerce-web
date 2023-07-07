@@ -9,12 +9,9 @@ import {
 } from "@heroicons/react/24/outline";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Logout from "./Logout";
 import { useRouter } from "next/router";
 import { AccountIn, Togglein } from "@/ReduxStore/ToggleSlice";
 import SignUpBox from "./smallPice/SignUpBox";
-import { LogoutHandler } from "@/ReduxStore/LogoutSlice";
-import { GetCartData } from "@/ReduxStore/CartData";
 
 const Headers = () => {
   // getting user data from redux userslice
@@ -25,9 +22,7 @@ const Headers = () => {
   const dispatch = useDispatch();
   const responsiveBar = useRef(null);
   const navButton = useRef(null);
-  const {cartdatas}  = useSelector(state => state.cartdata)
-
-
+  const { cartItem } = useSelector((state) => state.cartItem);
   const HandleSidebar = () => {
     dispatch(Togglein());
   }
@@ -39,18 +34,18 @@ const Headers = () => {
   };
   
   // hook and function for close to the navbar menu while clicking outside start
-  useEffect(() => {
-    const getResponsive = (e) => {
-      if(responsiveBar.current && !responsiveBar.current.contains(e.target) && !navButton.current.contains(e.target)){
-          setPopupResponsiveBar(false)
-      }
-     }
+  // useEffect(() => {
+  //   const getResponsive = (e) => {
+  //     if(responsiveBar.current && !responsiveBar.current.contains(e.target) && !navButton.current.contains(e.target)){
+  //         setPopupResponsiveBar(false)
+  //     }
+  //    }
 
-    document.addEventListener('mousedown', getResponsive);
-    return () => {
-      document.removeEventListener('mousedown', getResponsive);
-    }
-  },[popupResponsiveBar])
+  //   document.addEventListener('mousedown', getResponsive);
+  //   return () => {
+  //     document.removeEventListener('mousedown', getResponsive);
+  //   }
+  // },[popupResponsiveBar])
   // hook and function for close to the navbar menu while clicking outside end
 
 
@@ -58,9 +53,7 @@ const Headers = () => {
     dispatch(LogoutHandler())
   }
 
-  useEffect(() => {
-    dispatch(GetCartData())
-   },[])
+
   return (
     <>
       <div className="w-screen  h-auto bg-gray-100">
@@ -97,7 +90,7 @@ const Headers = () => {
               <li>
                 <Link
                   className={`links text-gray-600 hover:bg-blue-600 hover:text-white space-x-5 `}
-                  href={"/"}
+                  href={"/Whislist"}
                 >
                   <HeartIcon className="h-5" />
                   Whislist
@@ -119,7 +112,7 @@ const Headers = () => {
                 >
                   <ShoppingCartIcon className="h-5" />
                   Cart<span className="text-gray-700">{
-                    cartdatas?.reduce((acc, curr) => {
+                    cartItem?.reduce((acc, curr) => {
                       return acc + curr.items
                     }, 0)
                   }</span>
@@ -138,7 +131,7 @@ const Headers = () => {
               </li>
             </ul>
            <div className="w-full">
-              <SignUpBox Logoutbox={Logoutbox} AccountBtn={AccountBtn}/>
+              <SignUpBox  AccountBtn={AccountBtn} Logoutbox={Logoutbox}/>
            </div>
           </nav>
         </div>

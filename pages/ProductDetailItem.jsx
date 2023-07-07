@@ -1,5 +1,4 @@
 import { Decrease, Increase, TurnToZero } from '@/ReduxStore/AddProductSlice';
-import { GetCartData } from '@/ReduxStore/CartData';
 import { StarIcon } from '@heroicons/react/24/solid'
 import React from 'react'
 import { toast } from 'react-hot-toast';
@@ -8,11 +7,12 @@ import { useDispatch, useSelector } from 'react-redux'
 const ProductDetailPage = ({item}) => {
   const dispatch = useDispatch();
   const {counts} = useSelector(state => state.counts)
+  const {user} = useSelector(state => state.user)
 
   // adding data to cart 
-   const AddDataToCart = async (id) => {
+   const AddDataToCart = async (id, userId) => {
       try {
-            const res = await fetch('http://localhost:3000/api/SetCartData', {
+            const res = await fetch('/api/SetCartData', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"
@@ -20,13 +20,13 @@ const ProductDetailPage = ({item}) => {
                 body: JSON.stringify({
                     counts,
                     id,
+                    userId
                 })
             })
     
             const data = await res.json();
             if (!data.success) return toast.error(data.message);
             toast.success(data.message);
-            dispatch(GetCartData());
             dispatch(TurnToZero())
         } catch (err) {
             console.log(err)
@@ -61,7 +61,7 @@ const ProductDetailPage = ({item}) => {
             </div>
             <div className="my-4 space-x-3">
               <button  className='text-[16px] font-semibold w-[200px] py-2  bg-red-500 hover:bg-red-600 text-white '>Buy Now</button>
-              <button  onClick={() => AddDataToCart(item._id)} className='text-[16px] font-semibold w-[200px] py-2  bg-slate-500 hover:bg-slate-600 text-white '>Add To Cart</button>
+              <button  onClick={() => AddDataToCart(item._id, user.user._id)} className='text-[16px] font-semibold w-[200px] py-2  bg-slate-500 hover:bg-slate-600 text-white '>Add To Cart</button>
             </div>
           </div>
           <div className="">

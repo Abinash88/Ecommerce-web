@@ -10,10 +10,12 @@ const cartItem = new mongoose.Schema({
         type:Number,
         required:true,
     },
-    whislist:{
-        type:Boolean,
-        required:true,  
+    userId:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Buyers',
+        required:true,
     }
+  
 })
 
 export const Cart = mongoose.models.Cart || mongoose.model('Cart', cartItem)

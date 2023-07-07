@@ -39,7 +39,7 @@ const AddProduct = () => {
       formdata.append('decreasePrice', decreasePrice);
       formdata.append('country', country);
       formdata.append('catagory', catagory);
-      const res = await fetch("http://localhost:3000/api/auth/ProductData", {
+      const res = await fetch("/api/auth/ProductData", {
         method: 'POST',
         body: formdata
       });

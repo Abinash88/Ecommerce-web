@@ -1,21 +1,20 @@
-import { middlewareError } from "@/middleware/Error"
+import { middlewareError } from "@/middleware/Error";
 import { Cart } from "@/myModel/myCart";
 
 const handler = middlewareError(async (req, res) => {
 
     const data = req.body;
-    console.log(data);
-    const item = await Cart.findOne({ product: data.id });
+    const item = await Cart.findOne({ product: data.id , userId:data.userId});
     if (item) {
-        await Cart.updateOne({product:data.id}, {$inc:{items:data.counts}})
+        await Cart.updateOne({product:data.id, userId:data.userId}, {$inc:{items:data.counts}})
     }else{
         const cart = await Cart.create({
             product: data.id,
+            userId:data.userId,
             items: data.counts,
         })
         
         res.status(200).json({ success: true, message: 'Item Added to Cart' })
-        console.log(cart);
     }
     res.status(200).json({ success: true, message:'More number added'})
 })

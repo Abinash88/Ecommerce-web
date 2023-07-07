@@ -34,7 +34,7 @@ const SingleBuyerItem = ({ item, setGrid }) => {
               </h4>
 
               <div className="flex items-center space-x-4 my-2">
-                <h5 className="text-[20px] font-light text-red-500 font-semibold">
+                <h5 className="text-[20px] font-light text-red-500 ">
                   ${item?.price}
                 </h5>
                 <h5 className="line-through text-gray-500 font-[13px]">

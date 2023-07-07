@@ -6,7 +6,6 @@ import BuyersSlice from './FetchProductsSlice'
 import UserSlice from "./UserSlice";
 import ProductSlice from "./ProductDataSlice";
 import countsSlice  from "./AddProductSlice";
-import CartDataSlice  from "./CartData";
 import CartItemSlice  from "./CartItem";
 
 const store = configureStore({
@@ -18,7 +17,6 @@ const store = configureStore({
         logout:LogOutSlice,
         buyersProduct:BuyersSlice,
         counts:countsSlice,
-        cartdata:CartDataSlice,
         cartItem:CartItemSlice,
     },
 })

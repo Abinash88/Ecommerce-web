@@ -1,28 +1,26 @@
-import { GetCartData } from "@/ReduxStore/CartData";
 import Headers from "@/components/Headers";
-import React, { useEffect, useState } from "react";
+import React, {  useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CartSingleItem from "@/components/smallPice/cartSingleItem";
 import { useRouter } from "next/router";
-import CartItem, { getCartItem } from "@/ReduxStore/CartItem";
+import  { getCartItem } from "@/ReduxStore/CartItem";
 
 const Cart = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { cartItem } = useSelector((state) => state.cartItem);
-  const { cartdatas } = useSelector((state) => state.cartdata);
   const [ carttotal, setCarttotal] = useState();
-  useEffect(() => {
-    dispatch(GetCartData());
-  }, []);
+  const { user } = useSelector((state) => state.user);
+
+
 
   useEffect(() => {
-    dispatch(getCartItem());
+    dispatch(getCartItem(user?.user._id));
   }, []);
 
   const AddingCartItem = async () => {
     try {
-      const res = await fetch('http://localhost:3000/api/TotalCartPrice', {
+      const res = await fetch('/api/TotalCartPrice', {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
       });
@@ -34,17 +32,16 @@ const Cart = () => {
     }
   }
 
-  console.log(carttotal)
 
 
   useEffect(() => {
     AddingCartItem();
   }, []);
 
+
   return (
     <div>
       <Headers />
-
       <div className={`flex md:flex-row flex-col-reverse space-y-5 items-center md:items-start  relative justify-start w-[100%] md:w-[90%] md:space-x-4 h-[78vh]  my-10 m-auto`}>
         {cartItem?.length > 0 ? (
           <>
@@ -65,7 +62,7 @@ const Cart = () => {
               </h2>
               <div className="flex justify-between">
                 <h6 className="text-gray-600 my-2 font-semibold">
-                  SubTotal ({ cartdatas.map((item) => item.items)?.reduce((accu, current) => {
+                  SubTotal ({ cartItem.map((item) => item.items)?.reduce((accu, current) => {
                   return accu + current}, 0)})
                 </h6>
                 <h6 className="text-gray-600 my-2 font-semibold">
@@ -96,6 +93,7 @@ const Cart = () => {
         )}
       </div>
     </div>
+    
   );
 };
 

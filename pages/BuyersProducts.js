@@ -28,7 +28,7 @@ if(status==='loading'){
             <div className="md:hidden flex flex-col items-center">
               <EllipsisHorizontalIcon onClick={() => dispatch(OpenCatagory())}  className='h-8 relative zindex-10 shadow-md cursor-pointer text-gray-500 hover:bg-gray-200 bg-gray-100 rounded-full'/>
             </div>
-              <h3 className='text-[19px] text-blue-900 font-semibold'>Products</h3>
+              <h3  className='text-[19px] text-blue-900 font-semibold'>Products</h3>
               <div className=" items-center space-x-3 hidden md:flex">
                 <h5 className='text-gray-500 font-semibold text-[15px]'>View:</h5>
                 <TableCellsIcon onClick={() => setSetGrid(true)} className='h-8 cursor-pointer text-gray-400 hover:text-gray-500'/>
