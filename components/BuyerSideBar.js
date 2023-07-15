@@ -6,19 +6,38 @@ const BuyerSideBar = () => {
     const {isCatagory} = useSelector(state => state.toggle);
     const dispatch = useDispatch();
 
+
+    const GetCatagory = async() => {
+
+        try{
+            const res = await fetch('/api/ChangeCatagory',{
+                method: 'GET',
+                headers:{
+                    'Content-Type': 'application/json',
+                }
+            })
+
+            const data = await res.json();
+            if(!data.success) console.log(data.messag);
+        }catch(err) {
+
+        }
+    }
+
+
   return (
     <div style={{height:'calc(100vh - 55px)'}} className={`md:w-[280px] ${isCatagory ? 'left-0':' left-[-100%]'} w-full md:relative absolute md:left-0  p-2 border-2 bg-gray-100 transition-all transition-3s`}>
         <div className="p-5  w-full h-full px-7">
             <h4   className='text-start   py-1 text-[18px] font-bold text-blue-900'>Category</h4>
                 <div onClick={() => dispatch(OpenCatagory())} className="mt-1">
-                    <button className='text-gray-600 font-semibold text-[14px] py-2 hover:text-blue-900 text-left px-1 rounded-sm hover:bg-blue-100 w-full' type='button'>Women's Fashion</button>
-                    <button className='text-gray-600 font-semibold text-[14px] py-2 hover:text-blue-900 text-left px-1 rounded-sm hover:bg-blue-100 w-full' type='button'>Men's Fashion Fashion</button>
-                    <button className='text-gray-600 font-semibold text-[14px] py-2 hover:text-blue-900 text-left px-1 rounded-sm hover:bg-blue-100 w-full' type='button'>Electronic Devices</button>
-                    <button className='text-gray-600 font-semibold text-[14px] py-2 hover:text-blue-900 text-left px-1 rounded-sm hover:bg-blue-100 w-full' type='button'>Groceries & Pets</button>
-                    <button className='text-gray-600 font-semibold text-[14px] py-2 hover:text-blue-900 text-left px-1 rounded-sm hover:bg-blue-100 w-full' type='button'>Babies & Toys</button>
-                    <button className='text-gray-600 font-semibold text-[14px] py-2 hover:text-blue-900 text-left px-1 rounded-sm hover:bg-blue-100 w-full' type='button'>Home & Lifestyle</button>
-                    <button className='text-gray-600 font-semibold text-[14px] py-2 hover:text-blue-900 text-left px-1 rounded-sm hover:bg-blue-100 w-full' type='button'>Sports & Outdoor</button>
-                    <button className='text-gray-600 font-semibold text-[14px] py-2 hover:text-blue-900 text-left px-1 rounded-sm hover:bg-blue-100 w-full' type='button'>Motors, Tools & DIY</button>
+                    <button onClick={(e) => GetCatagory(e.target.value)} className='text-gray-600 font-semibold text-[14px] py-2 hover:text-blue-900 text-left px-1 rounded-sm hover:bg-blue-100 w-full' >Women's Fashion</button>
+                    <button onClick={(e) => GetCatagory(e.target.value)} className='text-gray-600 font-semibold text-[14px] py-2 hover:text-blue-900 text-left px-1 rounded-sm hover:bg-blue-100 w-full' >Men's Fashion Fashion</button>
+                    <button onClick={(e) => GetCatagory(e.target.value)} className='text-gray-600 font-semibold text-[14px] py-2 hover:text-blue-900 text-left px-1 rounded-sm hover:bg-blue-100 w-full' >Electronic Devices</button>
+                    <button onClick={(e) => GetCatagory(e.target.value)} className='text-gray-600 font-semibold text-[14px] py-2 hover:text-blue-900 text-left px-1 rounded-sm hover:bg-blue-100 w-full' >Groceries & Pets</button>
+                    <button onClick={(e) => GetCatagory(e.target.value)} className='text-gray-600 font-semibold text-[14px] py-2 hover:text-blue-900 text-left px-1 rounded-sm hover:bg-blue-100 w-full' >Babies & Toys</button>
+                    <button onClick={(e) => GetCatagory(e.target.value)} className='text-gray-600 font-semibold text-[14px] py-2 hover:text-blue-900 text-left px-1 rounded-sm hover:bg-blue-100 w-full' >Home & Lifestyle</button>
+                    <button onClick={(e) => GetCatagory(e.target.value)} className='text-gray-600 font-semibold text-[14px] py-2 hover:text-blue-900 text-left px-1 rounded-sm hover:bg-blue-100 w-full' >Sports & Outdoor</button>
+                    <button onClick={(e) => GetCatagory(e.target.value)} className='text-gray-600 font-semibold text-[14px] py-2 hover:text-blue-900 text-left px-1 rounded-sm hover:bg-blue-100 w-full' >Motors, Tools & DIY</button>
                 </div>
                 <div className="mt-3 ">
                     <h4 className='text-[18px] mb-4 font-bold text-blue-900'>Price</h4>
