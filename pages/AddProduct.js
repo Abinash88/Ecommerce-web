@@ -72,10 +72,10 @@ const AddProduct = () => {
                 Back
               </Link>
             </div>
-            <div className="w-[100%] flex justify-start">
+            <div className="w-[100%] flex-col-reverse md:flex-row flex justify-start">
               <form
                 onSubmit={SubmitData}
-                className="flex w-[60%] items-start flex-col"
+                className="flex md:w-[60%] w-[100%] items-start flex-col"
               >
                 <label
                   className="text-[15px] font-semibold my-2 text-gray-600"

@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import  { getCartItem } from "@/ReduxStore/CartItem";
 import CartBody from "@/components/smallPice/CartBody";
 import PleaseLoginPage from "./PleaseLoginPage";
+import { GetCartTotalcount } from "@/ReduxStore/CartTotalCount";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ const Cart = () => {
       const data = await res.json();
       if (!data.success) console.log(data.message)
       setCarttotal(data);
+      dispatch(GetCartTotalcount(user?.user?._id));
     } catch (err) {
       console.log(err.message)
     }

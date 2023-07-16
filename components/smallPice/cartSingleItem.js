@@ -1,4 +1,5 @@
 import { getCartItem } from "@/ReduxStore/CartItem";
+import { GetCartTotalcount } from "@/ReduxStore/CartTotalCount";
 import { TrashIcon, HeartIcon } from "@heroicons/react/24/outline";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
@@ -20,10 +21,12 @@ const cartSingleItem = ({ item, cartItem }) => {
         },
       });
 
+      
       const data = await res.json();
       if (!data.success) return toast.error(data.message);
       toast.success(data.message);
       dispatch(getCartItem(user?.user?._id));
+      dispatch(GetCartTotalcount(user?.user?._id));
     } catch (err) {
       console.log(err.message);
     }
@@ -61,6 +64,7 @@ const cartSingleItem = ({ item, cartItem }) => {
       const data = await res.json();
       if (!data.success) console.log(data.message);
       getCartEachCountItem(item._id);
+      dispatch(GetCartTotalcount(user?.user?._id));
     } catch (err) {
       console.log(err.message);
     }
@@ -78,6 +82,7 @@ const cartSingleItem = ({ item, cartItem }) => {
       const data = await res.json();
       if (!data.success) console.log(data.message);
       getCartEachCountItem(item._id);
+      dispatch(GetCartTotalcount(user?.user?._id));
     } catch (err) {
       console.log(err.message);
     }

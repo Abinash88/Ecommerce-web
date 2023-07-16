@@ -12,7 +12,7 @@ const Home = () => {
   return (
     <>
     <Headers/>
-      <div style={{ height: 'calc(100vh - 55px )' }} className="flex overflow-">
+      <div style={{ height: 'calc(100vh - 55px )' }} className="flex w-[100%] overflow-">
         <BuyerSideBar />
         <BuyersFace />
       </div>

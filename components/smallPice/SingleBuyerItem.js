@@ -28,9 +28,9 @@ const SingleBuyerItem = ({ item, setGrid }) => {
             <div className="">
               <h4 onClick={() => router.push(`/singleProductBox/${item._id}`)} 
                 className={`${!setGrid ? "mb-2" : ""
-                  } text-[14px] hover:underline mr-3 mb-3 capitalize text-blue-500 font-semibold`}
+                  } text-[15px] hover:underline mr-3 mb-3 capitalize text-blue-500 font-semibold`}
               >
-                {item?.name?.substring(0, 20)}...
+                {item?.name?.substring(0, 50)}...
               </h4>
 
               <div className="flex items-center space-x-4 my-2">

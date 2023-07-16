@@ -25,6 +25,7 @@ const Headers = () => {
   const responsiveBar = useRef(null);
   const navButton = useRef(null);
   const { cartItem } = useSelector((state) => state.cartItem);
+  const { CartCountItem } = useSelector((state) => state.CartCountItem);
   const { user } = useSelector((state) => state.user);
   const [productCount, setProductCount] = useState();
   const {logout} = useSelector(state => state.logout)
@@ -39,7 +40,6 @@ const Headers = () => {
       router.reload();
     }
   },[logout])
-
 
 
   const HandleResponsiveBars = () => {
@@ -132,7 +132,7 @@ const Headers = () => {
                   >
                     <ShoppingCartIcon className="h-5" />
                     Cart<span className="text-gray-700">{
-                     productCount? productCount[0].reduce((accu, curr) => {
+                     CartCountItem? CartCountItem[0]?.reduce((accu, curr) => {
                       return accu + curr.items
                     }, 0) : 0
                     }</span>
