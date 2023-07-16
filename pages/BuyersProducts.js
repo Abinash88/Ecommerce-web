@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Loading from './Loading';
 import { OpenCatagory } from '@/ReduxStore/ToggleSlice';
 import { MagnifyingGlassCircleIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
-import { Search } from '@/ReduxStore/CatagorySlice';
+import { Catagory, Search } from '@/ReduxStore/CatagorySlice';
 
 const BuyersProducts = () => {
 
@@ -21,11 +21,17 @@ const BuyersProducts = () => {
   let val = ''
   useEffect(() => {
     dispatch(FetchBuyersProduct())
-
+    setSearchBuyers(search);
   }, [])
 
 
+  useEffect(() => {
+      setSearchBuyers(search);
+  },[search]);
 
+  useEffect(() => {
+    setSearchBuyers(catagory);
+},[catagory]);
 
   const GetInputData = (value) => {
     dispatch(Search({value, BuyerDatas}))
@@ -33,6 +39,7 @@ const BuyersProducts = () => {
 
 useEffect(() => {
   dispatch(Search({value:'', BuyerDatas}))
+  dispatch(Catagory({catagory:'',Product:search }))
 }, [status])
  
   if (status === 'loading') {
@@ -48,9 +55,9 @@ useEffect(() => {
           <div className="md:hidden flex flex-col items-center">
             <EllipsisHorizontalIcon onClick={() => dispatch(OpenCatagory())} className='h-8 relative zindex-10 shadow-md cursor-pointer text-gray-500 hover:bg-gray-200 bg-gray-100 rounded-full' />
           </div>
-          <h3 className='text-[19px] text-blue-900 font-semibold'>Products</h3>
-          <form className="flex w-[40%]  rounded-md  items-center border h-auto justify-between">
-            <input type="search"  onChange={(e) => {GetInputData(e.target.value)}} className='w-[90%] px-4 py-1 bg-transparent' placeholder='Search you product here...' />
+          <h3 className='text-[19px]  hidden md:flex text-blue-900 font-semibold'>Products</h3>
+          <form className="flex md:w-[40%] w-[70%]  rounded-md  items-center border h-auto justify-between">
+            <input type="search"  onChange={(e) => {GetInputData(e.target.value)}} className='w-[90%] px-4 py-1 bg-transparent' placeholder='Search your product here...' />
             <MagnifyingGlassIcon className='h-7 cursor-pointer inline w-[10%] ' />
           </form>
           <div className=" items-center space-x-3 hidden md:flex">
@@ -59,15 +66,15 @@ useEffect(() => {
             <ListBulletIcon onClick={() => setSetGrid(false)} className={` h-8 cursor-pointer text-gray-400 hover:text-gray-500`} />
           </div>
         </div>
-        <div style={{ height: 'calc(100vh - 55px - 60px)' }} className={` w-full p-4 overflow-auto  ${BuyerDatas?.length > 0 ? ` grid  ${setGrid ? 'grid-cols-[repeat(auto-fill,minmax(200px,1fr))]  ' : ' grid-rows-auto'}  gap-4` :  'h-full'} `}>
+        <div style={{ height: 'calc(100vh - 55px - 60px)' }} className={` w-full p-4 overflow-auto  ${searchBuyers?.length > 0 ? ` grid  ${setGrid ? 'grid-cols-[repeat(auto-fill,minmax(200px,1fr))]  ' : ' grid-rows-auto'}  gap-4` :  'h-full w-full grid-cols-1'} `}>
           {
-            search?.length > 0 ? search?.map((item) => {
+            searchBuyers?.length > 0 ? searchBuyers?.map((item) => {
               return (
                 <SingleBuyerItem key={item._id} item={item} setGrid={setGrid} />
               )
 
-            }) : <div className='w-[100%] h-full flex  items-center flex-col justify-center text-[23px] font-semibold text-gray-500 '>
-              <span>No Products are Created</span>
+            }) : <div className='w-[100%] h-full flex   items-center flex-col justify-center text-[23px] font-semibold text-gray-500 '>
+              <span>No Items Found</span>
               <ArchiveBoxXMarkIcon className='h-12 mt-2 text-gray-400' />
             </div>
           }

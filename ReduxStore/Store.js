@@ -10,6 +10,7 @@ import CartItemSlice  from "./CartItem";
 import GetCartCount from "./CartTotalCount";
 import WhislistSlice from "./AddToWhislist";
 import CatagorySlice from "./CatagorySlice";
+import GetWhislistSlice from "./GetWhislistProduct";
 
 const store = configureStore({
     reducer:{
@@ -24,6 +25,7 @@ const store = configureStore({
         CartCountItem:GetCartCount,
         whislist:WhislistSlice,
         catagory:CatagorySlice,
+        whislistdata:GetWhislistSlice,
     },
 })
 

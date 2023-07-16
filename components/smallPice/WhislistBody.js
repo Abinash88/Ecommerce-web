@@ -1,21 +1,22 @@
-import React from 'react'
-import whislistSingleItem from './whislistSingleItem'
+import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { useSelector } from 'react-redux';
+import WhisListSingleItem from './whislistSingleItem';
 
-const WhislistBody = ({whislist}) => {
+const WhislistBody = ({whislistdata}) => {
+  
+  const router = useRouter();
 
-    const { cartItem } = useSelector((state) => state.cartItem);
-    const router = useRouter();
+ 
 
+        console.log(whislistdata?.product)
   return (
     <div className={`flex md:flex-row flex-col-reverse space-y-5 items-center md:items-start  relative justify-start w-[100%] md:w-[90%] md:space-x-4 h-[78vh]  my-10 m-auto`}>
-    {whislist?.length > 0 ? (
+    {whislistdata?.product?.length > 0 ? (
         <>
             <div className="md:w-[70%] w-[95%] h-full  overflow-auto relative m-auto p-3 flex flex-col gap-[20px]">
-                {whislist?.map((item) => {
+                {whislistdata?.product?.map((item) => {
                     return (
-                        <whislistSingleItem
+                        <WhisListSingleItem
                             key={item._id}
                             item={item}
                         />

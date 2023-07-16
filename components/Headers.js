@@ -116,15 +116,7 @@ const Headers = () => {
                     Whislist
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    className={`links text-gray-600 hover:bg-blue-600 hover:text-white space-x-5 `}
-                    href={"/"}
-                  >
-                    <BanknotesIcon className="h-5" />
-                    Brand
-                  </Link>
-                </li>
+               
                 <li>
                   <Link
                     className={`links buttonlink text-gray-600 hover:bg-blue-600 hover:text-white space-x-5 `}

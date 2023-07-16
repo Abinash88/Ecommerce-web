@@ -1,5 +1,6 @@
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-hot-toast";
 
 const initialState = {
     whislist:[],
@@ -26,15 +27,15 @@ export const WhislistSlice = createSlice({
 export default WhislistSlice.reducer;
 
 
-export const FetchWhislist = createAsyncThunk('whislist/FetchWhislist', async(userId, productId) => {
-    console.log(userId, productId)
+export const FetchWhislist = createAsyncThunk('whislist/FetchWhislist', async(ids) => {
+    console.log(ids)
     try {
         const res = await fetch('/api/GetWhislistProduct',{
-            method:'Post',
+            method:'POST',
             headers:{
                 'Content-Type':'application/json',
-                userId,
-                productId
+                userId:ids.user,
+                productId:ids.product
             }
         });
         const data = await res.json();

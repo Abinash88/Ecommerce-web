@@ -11,16 +11,13 @@ export const CatagorySlice = createSlice({
     reducers:{
         Catagory(state, action) {
             const search = (catag, data) => {
-                console.log(data, catag);
                 const catagorized = Array.from(data).filter((item) => {
-                    console.log(item.catagory === catag);
                     if(catag !== '') {
                         return item.catagory.toLowerCase().toString() === catag.toLowerCase().toString();
                     }else {
                         return item
                     }
                 });
-                console.log(catagorized);
                 return catagorized;
               };
             

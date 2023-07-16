@@ -1,15 +1,14 @@
 import { TrashIcon, HeartIcon } from "@heroicons/react/24/outline";
 import React, { useEffect, useState } from "react";
-import { toast } from "react-hot-toast";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-const whislistSingleItem = ({ item }) => {
-  const dispatch = useDispatch();
+const WhisListSingleItem = ({ item }) => {
   const [numbercount, setNumbercount] = useState(0);
+  const { whislist } = useSelector(state => state.whislist)
+  const { user } = useSelector(state => state.user)
 
  
-    
-
+    console.log(item.product, 'singleitemwhislist')
 
   return (
     <div className="w-full flex md:h-[150px] h-auto md:overflow-hidden bg-gray-100">
@@ -32,32 +31,18 @@ const whislistSingleItem = ({ item }) => {
             Rs.{item?.price}
           </h5>
           <div className="flex pb-2 md:pb-0 justify-center space-x-3">
-            <HeartIcon className="h-5 cursor-pointer" />
-            <TrashIcon
-              onClick={() => deleteCartData(item?._id)}
-              className="h-5 cursor-pointer text-red-600"
-            />
+          <div onClick={() => SaveToWhislist(user?.user?._id, item?._id)} className="md:mr-10 sm:mr-0 mt-5">
+              { whislist?.whislist?.acknowledged ?
+              <button><HeartIcon className='h-7 ' /></button>
+              :
+              <button><Heart className='h-7 text-red-600' /></button>
+              }
+            </div>
           </div>
         </div>
-      </div>
-
-      <div className="flex-1 flex md:flex-row flex-col  justify-center items-center">
-        <button
-          onClick={() => LessItem(item._id)}
-          className="text-[25px] text-white hover:bg-gray-500 w-[30px] h-[30px] rounded-sm flex items-center justify-center mx-3 bg-gray-400"
-        >
-          -
-        </button>
-        <span>{numbercount ? numbercount : 0}</span>
-        <button
-          onClick={() => AddItem(item._id)}
-          className="text-[25px] text-white hover:bg-gray-500 w-[30px] h-[30px] rounded-sm flex items-center justify-center mx-3  bg-gray-400"
-        >
-          +
-        </button>
       </div>
     </div>
   );
 };
 
-export default whislistSingleItem;
+export default WhisListSingleItem;

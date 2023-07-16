@@ -13,9 +13,10 @@ const ProductDetailPage = ({ item }) => {
   const { user } = useSelector(state => state.user)
   const { whislist } = useSelector(state => state.whislist)
 
-
+  console.log(whislist)
  const SaveToWhislist = (user, product) => {
-  dispatch(FetchWhislist(user, product));
+  if(!user) return toast.error('Please Login first!')
+  dispatch(FetchWhislist({user, product}));
 }
 
   // adding data to cart 
@@ -43,6 +44,7 @@ const ProductDetailPage = ({ item }) => {
     }
   }
 
+
   return (
     <div className='w-[94%] mx-auto sm:pb-0 pb-6 md:h-[80vh] h-auto relative mt-4 bg-gray-100 md:flex-row flex-col flex'>
       <div className="sm:w-[30%] sm:h-[80%] w-full">
@@ -61,11 +63,11 @@ const ProductDetailPage = ({ item }) => {
               <p className='ml-2 text-gray-500 text-[14px] font-semibold'>(5)Ratings</p>
             </div>
 
-            <div onClick={SaveToWhislist} className="md:mr-10 sm:mr-0 mt-5">
-              { whislist?.added ?
-              <button><Heart className='h-7 text-red-600' /></button>
+            <div onClick={() => SaveToWhislist(user?.user?._id, item?._id)} className="md:mr-10 sm:mr-0 mt-5">
+              { whislist?.whislist?.acknowledged ?
+              <button><HeartIcon className='h-7 ' /></button>
               :
-                <button><HeartIcon className='h-7 ' /></button>
+              <button><Heart className='h-7 text-red-600' /></button>
               }
             </div>
           </div>
