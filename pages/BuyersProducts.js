@@ -39,8 +39,11 @@ const BuyersProducts = () => {
 
 useEffect(() => {
   dispatch(Search({value:'', BuyerDatas}))
-  dispatch(Catagory({catagory:'',Product:search }))
 }, [status])
+
+useEffect(() => {
+  dispatch(Catagory({catagory:'',Product:search }))
+}, [])
  
   if (status === 'loading') {
     return <Loading />

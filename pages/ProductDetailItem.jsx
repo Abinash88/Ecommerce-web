@@ -13,7 +13,7 @@ const ProductDetailPage = ({ item }) => {
   const { user } = useSelector(state => state.user)
   const { whislist } = useSelector(state => state.whislist)
 
-  console.log(whislist)
+  console.log(whislist, 'whislist')
  const SaveToWhislist = (user, product) => {
   if(!user) return toast.error('Please Login first!')
   dispatch(FetchWhislist({user, product}));

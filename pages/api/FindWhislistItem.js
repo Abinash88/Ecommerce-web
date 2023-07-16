@@ -9,13 +9,15 @@ const handler = middlewareError(async(req, res) => {
     const  {userid} = req.headers;
     if(userid) {
         const ids = await Whislist.find({userId:userid});
-        console.log(ids);
-        const data = await Products.findById(ids[0].ProductId)
-        const product = [data];
-        res.status(200).json({success: true, message:"successfull Get whislist data", product})
+        const data =  await Promise.all(ids.map((item) => {
+            return  Products.findById(item.ProductId)
+        }))
+        console.log(data);
+        res.status(200).json({success: true, message:"successfull Get whislist data", product:data})
     }else{
-        res.status(403).json({success:false, message:'no Data Fround!'})
+        res.status(400).json({success:false, message:'no Data Fround!'})
     }
 })
 
 export default handler;
+

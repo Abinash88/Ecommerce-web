@@ -1,21 +1,28 @@
-import { TrashIcon, HeartIcon } from "@heroicons/react/24/outline";
-import React, { useEffect, useState } from "react";
+import { FetchWhislist } from "@/ReduxStore/AddToWhislist";
+import {  HeartIcon } from "@heroicons/react/24/outline";
+import { StarIcon, HeartIcon as Heart } from '@heroicons/react/24/solid'
+import React, {  useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const WhisListSingleItem = ({ item }) => {
   const [numbercount, setNumbercount] = useState(0);
   const { whislist } = useSelector(state => state.whislist)
   const { user } = useSelector(state => state.user)
+  const dispatch = useDispatch();
 
- 
-    console.log(item.product, 'singleitemwhislist')
+  const SaveToWhislist = (user, product) => {
+    if(!user) return toast.error('Please Login first!')
+    dispatch(FetchWhislist({user, product}));
+  }
+
+    console.log(item, 'singleitemwhislist')
 
   return (
     <div className="w-full flex md:h-[150px] h-auto md:overflow-hidden bg-gray-100">
       <div className="w-[150px] h-full">
         <img className="h-full w-full" src={item?.image?.url} alt="" />
       </div>
-      <div className="flex items-center md:flex-row flex-col ">
+      <div className="flex items-center justify-between md:flex-row flex-col ">
         <div className="w-[96%] md:w-[40%] mx-5 my-4 flex flex-col items-start space-y-3">
           <h2 className="text-gray-600 font-semibold text-[14px] md:text-[15px] ">
             {item?.name}

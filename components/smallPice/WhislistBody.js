@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import WhisListSingleItem from './whislistSingleItem';
+import WhisListSingleItem from './WhisListSingleItem';
 
 const WhislistBody = ({whislistdata}) => {
   
   const router = useRouter();
 
- 
+ console.log(whislistdata)
 
-        console.log(whislistdata?.product)
   return (
     <div className={`flex md:flex-row flex-col-reverse space-y-5 items-center md:items-start  relative justify-start w-[100%] md:w-[90%] md:space-x-4 h-[78vh]  my-10 m-auto`}>
     {whislistdata?.product?.length > 0 ? (

@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     catagory:[],
     search:[],
+    pricecatagory:[],
 };
 
 export const CatagorySlice = createSlice({
@@ -34,10 +35,21 @@ export const CatagorySlice = createSlice({
             }
           
               state.search = SearchEngine(action.payload.value, action.payload.BuyerDatas)
-        } 
+        },
+        PriceCatagory(state, action) {
+            const PriceSearch = (value, buyersdata) => {
+                const lower = value?.toLowerCase()
+                const data = buyersdata?.filter((item) => {
+                  return item?.name.toLowerCase().includes(lower)
+                })
+                return data;
+            }
+          
+              state.pricecatagory = PriceSearch(action.payload.value, action.payload.BuyerDatas)
+        }
 
     }
 })
 
-export const {Catagory, Search} = CatagorySlice.actions
+export const {Catagory, Search, PriceCatagory} = CatagorySlice.actions
 export default CatagorySlice.reducer;

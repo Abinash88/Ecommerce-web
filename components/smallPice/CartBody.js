@@ -1,10 +1,17 @@
 import React from 'react'
 import CartSingleItem from "@/components/smallPice/cartSingleItem";
 import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
+import Loading from '@/pages/Loading';
 
 const CartBody = ({cartItem, carttotal}) => {
+  const {status } = useSelector((state) => state.cartItem);
 
   const router = useRouter();
+
+  if(status === 'pending') {
+    return <Loading/>
+  }
 
   return (
     <div className={`flex md:flex-row flex-col-reverse space-y-5 items-center md:items-start  relative justify-start w-[100%] md:w-[90%] md:space-x-4 h-[78vh]  my-10 m-auto`}>

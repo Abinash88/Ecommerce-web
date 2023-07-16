@@ -6,9 +6,18 @@ import React, { useEffect } from 'react'
 import BuyersFace from './BuyersProducts' 
 import BuyerSideBar from "@/components/BuyerSideBar";
 import Headers from "@/components/Headers";
+import { useDispatch, useSelector } from "react-redux";
+import { GetWhislist } from "@/ReduxStore/GetWhislistProduct";
 
 const Home = () => {
- 
+  const { user, status } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  
+  useEffect(() => {
+    dispatch(GetWhislist(user?.user?._id))
+},[])
+
   return (
     <>
     <Headers/>

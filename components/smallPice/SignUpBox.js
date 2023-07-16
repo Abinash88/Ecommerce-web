@@ -22,7 +22,7 @@ const SignUpBox = ({ AccountBtn, Logoutbox }) => {
 
   useEffect(() => {
     if(status === 'loading') {
-      return <Loading/>
+       <Loading/>
     }
   }, [user]);
 

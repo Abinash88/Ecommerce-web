@@ -14,8 +14,9 @@ import { AccountIn, Togglein } from "@/ReduxStore/ToggleSlice";
 import SignUpBox from "./smallPice/SignUpBox";
 import { GetCartTotalcount } from "@/ReduxStore/CartTotalCount";
 import { LogoutHandler } from "@/ReduxStore/LogoutSlice";
+import Loading from "@/pages/Loading";
 
-const Headers = () => {
+const Headers = ({whislistdata}) => {
   // getting user data from redux userslice
   const router = useRouter();
   const AccountBtn = useRef(null);
@@ -26,7 +27,7 @@ const Headers = () => {
   const navButton = useRef(null);
   const { cartItem } = useSelector((state) => state.cartItem);
   const { CartCountItem } = useSelector((state) => state.CartCountItem);
-  const { user } = useSelector((state) => state.user);
+  const { user, status } = useSelector((state) => state.user);
   const [productCount, setProductCount] = useState();
   const {logout} = useSelector(state => state.logout)
 
@@ -69,6 +70,10 @@ const Headers = () => {
     useEffect(() => {
       if(user.success) {
         dispatch(GetCartTotalcount(user?.user?._id));
+      }
+
+      if(status === 'loading') {
+         <Loading/>
       }
     }, [])
 
@@ -113,7 +118,8 @@ const Headers = () => {
                     href={"/Whislist"}
                   >
                     <HeartIcon className="h-5" />
-                    Whislist
+                    Whislist 
+                    <span>{whislistdata?.product?.length}</span>
                   </Link>
                 </li>
                

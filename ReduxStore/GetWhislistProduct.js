@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     whislistdata:[],
-    status:null,
+    whislistStatus:null,
 }
 
 export const GetWhislistSlice = createSlice({
@@ -10,15 +10,14 @@ export const GetWhislistSlice = createSlice({
     initialState,
     extraReducers: (builder) => {
         builder.addCase(GetWhislist.fulfilled, (state, action) => {
-            console.log(action.payload,'action')
             state.whislistdata = action.payload;
-            state.status = 'idle';
+            state.whislistStatus = 'idle';
         })
             .addCase(GetWhislist.pending, (state, action) => {
-                state.status = 'loading';
+                state.whislistStatus = 'loading';
             })
             .addCase(GetWhislist.rejected, (state, action) => {
-                state.status = 'rejected';
+                state.whislistStatus = 'rejected';
             })
     }
 })
@@ -36,7 +35,7 @@ export const GetWhislist = createAsyncThunk('whislistdata/GetWhislist', async(id
             }
         });
         const data = await res.json();
-        if (!data.success) return console.log(data.success);
+        if (!data.success) return console.log(data.message);
         return data;
     } catch (err) {
         console.log(err.message);
