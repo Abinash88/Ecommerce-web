@@ -30,7 +30,7 @@ export const CookieSetter = (res, token, set) => {
 
 export const jwtVerify = async (req) => {
     const cookie = req.headers.cookie;
-    const token = cookie?.split('=')[1]
+    const token = cookie?.split('=')[1]   
     if (!token) return null;
     const decoded = Jwt.verify(token, process.env.JWT_SECRET);
     return await Buyers.findById(decoded.id);
