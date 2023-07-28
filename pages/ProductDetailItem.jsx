@@ -52,7 +52,6 @@ const ProductDetailPage = ({ item }) => {
       console.log(err)
     }
   }
-  console.log(whislist?.whislist)
   return (
     <div className='w-[94%] mx-auto sm:pb-0 pb-6 md:h-[80vh] h-auto relative mt-4 bg-gray-100 md:flex-row flex-col flex'>
       <div className="sm:w-[30%] sm:h-[80%] w-full">

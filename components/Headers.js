@@ -87,7 +87,6 @@ const Headers = () => {
     // dispatch(GetWhislist(user?.user?._id));
   },[whislist])
 
-  console.log(whislistdata)
   return (
     <>
       <div className="w-screen   h-auto bg-gray-100">
