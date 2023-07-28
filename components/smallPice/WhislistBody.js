@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import WhisListSingleItem from './WhisListSingleItem';
+// import WhisListSingleItem from './WhisListSingleItem';
 
 const WhislistBody = ({whislistdata}) => {
   
@@ -11,14 +11,14 @@ const WhislistBody = ({whislistdata}) => {
     {whislistdata?.product?.length > 0 ? (
         <>
             <div className="md:w-[70%] w-[95%] h-full  overflow-auto relative m-auto p-3 flex flex-col gap-[20px]">
-                {whislistdata?.product?.map((item) => {
+                {/* {whislistdata?.product?.map((item) => {
                     return (
                         <WhisListSingleItem
                             key={item._id}
                             item={item}
                         />
                     );
-                })}
+                })} */}
             </div>
         </>
     ) : (
