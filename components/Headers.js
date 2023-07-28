@@ -83,15 +83,12 @@ const Headers = () => {
     }
   }, [])
 
-  useEffect(() => {
-    // dispatch(GetWhislist(user?.user?._id));
-  },[whislist])
 
   return (
     <>
       <div className="w-screen   h-auto bg-gray-100">
         <div className={`flex py-2 md:py-0 justify-between items-center px-10`}>
-          <div className="flex items-center justify-start space-x-2 flex-1">
+          <div className="flex  items-center justify-start space-x-2 ">
             {router.pathname === '/' || router.pathname === '/singleProductBox/648fc14a59f4d3329e31d88d' ? null :
               <Bars3Icon onClick={HandleSidebar} className="h-8" />
             }
@@ -105,6 +102,9 @@ const Headers = () => {
               onClick={HandleResponsiveBars}
               className={`h-9  cursor-pointer`}
             />
+          </div>
+          <div className=''>
+            <h2 className="text-[17px] font-semibold p-1 border-2 border-red-600 text-red-500">On Going Project</h2>
           </div>
           <nav ref={responsiveBar}
             className={`navs md:relative w-[400px] md:w-[unset] ${popupResponsiveBar ? "h-[350px] " : "h-[0]"
