@@ -15,8 +15,9 @@ import SignUpBox from "./smallPice/SignUpBox";
 import { GetCartTotalcount } from "@/ReduxStore/CartTotalCount";
 import { LogoutHandler } from "@/ReduxStore/LogoutSlice";
 import Loading from "@/pages/Loading";
+import { GetWhislist } from "@/ReduxStore/GetWhislistProduct";
 
-const Headers = ({whislistdata}) => {
+const Headers = () => {
   // getting user data from redux userslice
   const router = useRouter();
   const AccountBtn = useRef(null);
@@ -29,18 +30,21 @@ const Headers = ({whislistdata}) => {
   const { CartCountItem } = useSelector((state) => state.CartCountItem);
   const { user, status } = useSelector((state) => state.user);
   const [productCount, setProductCount] = useState();
-  const {logout} = useSelector(state => state.logout)
+  const { logout } = useSelector(state => state.logout)
+  const { whislistdata, whislistStatus } = useSelector(state => state.whislistdata)
+  const { whislist } = useSelector(state => state.whislist)
+
 
   const HandleSidebar = () => {
     dispatch(Togglein());
   }
 
   // reaload after logout function 
-  useEffect(() =>{
-    if(logout) {
+  useEffect(() => {
+    if (logout) {
       router.reload();
     }
-  },[logout])
+  }, [logout])
 
 
   const HandleResponsiveBars = () => {
@@ -67,95 +71,99 @@ const Headers = ({whislistdata}) => {
     dispatch(LogoutHandler())
   }
 
-    useEffect(() => {
-      if(user.success) {
-        dispatch(GetCartTotalcount(user?.user?._id));
-      }
 
-      if(status === 'loading') {
-         <Loading/>
-      }
-    }, [])
+  useEffect(() => {
+    if (user.success) {
+      dispatch(GetCartTotalcount(user?.user?._id));
+    }
 
-    
 
-    return (
-      <>
-        <div className="w-screen   h-auto bg-gray-100">
-          <div className={`flex py-2 md:py-0 justify-between items-center px-10`}>
-            <div className="flex items-center justify-start space-x-2 flex-1">
-              {router.pathname === '/' || router.pathname === '/singleProductBox/648fc14a59f4d3329e31d88d' ? null :
-                <Bars3Icon onClick={HandleSidebar} className="h-8" />
-              }
-              <Link href={"/"}>
-                <h2 className="logo">Ecom-web</h2>
-              </Link>
-            </div>
-            <div className={`absolute right-10 md:hidden block`}>
-              <Bars3Icon
-                ref={navButton}
-                onClick={HandleResponsiveBars}
-                className={`h-9  cursor-pointer`}
-              />
-            </div>
-            <nav ref={responsiveBar}
-              className={`navs md:relative w-[400px] md:w-[unset] ${popupResponsiveBar ? "h-[350px] " : "h-[0]"
-                } right-0 bg-gray-100 md:bg-transparent  overflow-hidden md:overflow-visible top-[3rem] md:top-0 transition-all duration-300 md:h-auto absolute flex items-center z-20`}
-            >
-              <ul className="flex flex-col md:flex-row ">
-                <li>
-                  <Link
-                    className={`links text-gray-600 hover:bg-blue-600 hover:text-white space-x-5 `}
-                    href={"/"}
-                  >
-                    <CursorArrowRippleIcon className="h-5 " />
-                    Products
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className={`links text-gray-600 hover:bg-blue-600 hover:text-white space-x-5 `}
-                    href={"/Whislist"}
-                  >
-                    <HeartIcon className="h-5" />
-                    Whislist 
-                    <span>{whislistdata?.product?.length}</span>
-                  </Link>
-                </li>
-               
-                <li>
-                  <Link
-                    className={`links buttonlink text-gray-600 hover:bg-blue-600 hover:text-white space-x-5 `}
-                    href={"/Cart"}
-                  >
-                    <ShoppingCartIcon className="h-5" />
-                    Cart<span className="text-gray-700">{
-                     CartCountItem? CartCountItem[0]?.reduce((accu, curr) => {
+    if (status === 'loading') {
+      <Loading />
+    }
+  }, [])
+
+  useEffect(() => {
+    // dispatch(GetWhislist(user?.user?._id));
+  },[whislist])
+
+  console.log(whislistdata)
+  return (
+    <>
+      <div className="w-screen   h-auto bg-gray-100">
+        <div className={`flex py-2 md:py-0 justify-between items-center px-10`}>
+          <div className="flex items-center justify-start space-x-2 flex-1">
+            {router.pathname === '/' || router.pathname === '/singleProductBox/648fc14a59f4d3329e31d88d' ? null :
+              <Bars3Icon onClick={HandleSidebar} className="h-8" />
+            }
+            <Link href={"/"}>
+              <h2 className="logo">Ecom-web</h2>
+            </Link>
+          </div>
+          <div className={`absolute right-10 md:hidden block`}>
+            <Bars3Icon
+              ref={navButton}
+              onClick={HandleResponsiveBars}
+              className={`h-9  cursor-pointer`}
+            />
+          </div>
+          <nav ref={responsiveBar}
+            className={`navs md:relative w-[400px] md:w-[unset] ${popupResponsiveBar ? "h-[350px] " : "h-[0]"
+              } right-0 bg-gray-100 md:bg-transparent  overflow-hidden md:overflow-visible top-[3rem] md:top-0 transition-all duration-300 md:h-auto absolute flex items-center z-20`}
+          >
+            <ul className="flex flex-col md:flex-row ">
+              <li>
+                <Link
+                  className={`links text-gray-600 hover:bg-blue-600 hover:text-white space-x-5 `}
+                  href={"/"}
+                >
+                  <CursorArrowRippleIcon className="h-5 " />
+                  Products
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className={`links text-gray-600 hover:bg-blue-600 hover:text-white space-x-5 `}
+                  href={"/Whislist"}
+                >
+                  <HeartIcon className="h-5" />
+                  Whislist
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  className={`links buttonlink text-gray-600 hover:bg-blue-600 hover:text-white space-x-5 `}
+                  href={"/Cart"}
+                >
+                  <ShoppingCartIcon className="h-5" />
+                  Cart<span className="text-gray-700">{
+                    CartCountItem ? CartCountItem[0]?.reduce((accu, curr) => {
                       return accu + curr.items
                     }, 0) : 0
-                    }</span>
-                  </Link>
-                </li>
-                <li>
-                  <button
-                    onClick={() => dispatch(AccountIn())}
-                    ref={AccountBtn}
-                    className={`links  text-gray-600 hover:bg-blue-600 hover:text-white  space-x-5 ${popupAccount ? "bg-blue-600 text-white" : ""
-                      }`}
-                  >
-                    <UserIcon className="h-5" />
-                    Account
-                  </button>
-                </li>
-              </ul>
-              <div className="w-full">
-                <SignUpBox AccountBtn={AccountBtn} Logoutbox={Logoutbox} />
-              </div>
-            </nav>
-          </div>
+                  }</span>
+                </Link>
+              </li>
+              <li>
+                <button
+                  onClick={() => dispatch(AccountIn())}
+                  ref={AccountBtn}
+                  className={`links  text-gray-600 hover:bg-blue-600 hover:text-white  space-x-5 ${popupAccount ? "bg-blue-600 text-white" : ""
+                    }`}
+                >
+                  <UserIcon className="h-5" />
+                  Account
+                </button>
+              </li>
+            </ul>
+            <div className="w-full">
+              <SignUpBox AccountBtn={AccountBtn} Logoutbox={Logoutbox} />
+            </div>
+          </nav>
         </div>
-      </>
-    );
-  };
+      </div>
+    </>
+  );
+};
 
-  export default Headers;
+export default Headers;

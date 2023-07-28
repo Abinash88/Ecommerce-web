@@ -1,6 +1,6 @@
 import { Catagory, PriceCatagory } from '@/ReduxStore/CatagorySlice';
 import { OpenCatagory } from '@/ReduxStore/ToggleSlice';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 const BuyerSideBar = () => {
@@ -9,11 +9,13 @@ const BuyerSideBar = () => {
     const { BuyerDatas, status } = useSelector(state => state.buyersProduct);
     const [maxPrice, setMaxPrice] = useState(undefined);
     const [minPrice, setMinPrice] = useState(undefined);
+    const { user } = useSelector((state) => state.user);
 
-    const PriceSearch = () =>{
+
+
+const PriceSearch = () =>{
         dispatch(PriceCatagory(minPrice, maxPrice))
     }
-    console.log(isCagatory)
     return (
         <div style={{ height: 'calc(100vh - 55px)' }} className={`md:w-[280px] ${isCagatory ? 'left-0' : ' left-[-100%]'} w-full md:relative absolute md:left-0  p-2 border-2 bg-gray-100 transition-all transition-3s`}>
             <div className="p-5  w-full h-full px-7">

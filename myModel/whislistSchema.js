@@ -11,7 +11,12 @@ const WhilistItem = new mongoose.Schema({
         ref:'Products',
         required:true,
     },
-  
+    added:{
+        type:Boolean,
+        default:false,
+    }
+
 })
 
-export  const Whislist = mongoose.models.Whislist || mongoose.model('Whislist', WhilistItem)
+export  const Whislist = mongoose.models.Whislist || mongoose.model('Whislist', WhilistItem);
+

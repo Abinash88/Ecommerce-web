@@ -5,16 +5,18 @@ const { Whislist } = require("@/myModel/whislistSchema");
 const handler = middlewareError(async(req, res) => {
     const {userid, productid} = req.headers;
     if(userid && productid) {
-        const data = await Whislist.findOne({ProductId:productid});
+        const data = await Whislist.findOne({ProductId:productid, userId:userid});
+        console.log(data);
         if(!data) {
             const whislist = await Whislist.create({
                 userId:userid,
                 ProductId:productid,
+                added:true,
             });
-            res.status(200).json({success:true, added:true, message:'Added to Whislist', whislist})
+            res.status(200).json({success:true, message:'Added to Whislist', whislist})
         }else{
-            const whislist = await Whislist.deleteOne({ProductId:productid});
-            res.status(200).json({success:true, added:false, message:'Removed from Whislist', whislist})
+            const whislist = await Whislist.deleteOne({ProductId:productid, userId:userid});
+            res.status(200).json({success:true, message:'Removed from Whislist', whislist})
         }
 
     } else{

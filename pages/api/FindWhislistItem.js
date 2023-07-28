@@ -6,13 +6,12 @@ const { middlewareError } = require("@/middleware/Error");
 
 const handler = middlewareError(async(req, res) => {
     if(req.method !== 'GET' ) return res.status(400).json({success:false, message:'Get Method only allowed'})
-    const  {userid} = req.headers;
-    if(userid) {
-        const ids = await Whislist.find({userId:userid});
+    const  bothid = req.headers;
+    if(bothid.userid) {
+        const ids = await Whislist.find({userId:bothid.userid});
         const data =  await Promise.all(ids.map((item) => {
             return  Products.findById(item.ProductId)
         }))
-        console.log(data);
         res.status(200).json({success: true, message:"successfull Get whislist data", product:data})
     }else{
         res.status(400).json({success:false, message:'no Data Fround!'})

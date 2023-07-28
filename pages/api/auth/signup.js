@@ -15,7 +15,6 @@ const handler = middlewareError(async (req, res) => {
     }
     await mongoDB();
     let user = await Buyers.findOne({ email });
-    console.log(user);  
     if (user) return ErrorMessage(res, 400, "Email already in use");
     
 

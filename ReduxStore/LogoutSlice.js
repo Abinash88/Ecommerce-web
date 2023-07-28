@@ -36,7 +36,6 @@ export const LogoutHandler =createAsyncThunk('logout/LogoutHandler', async () =>
 
         const res = await axios.get('/api/auth/logout')
         const data = res.data;
-        console.log(data);
         if (!data.message) console.log(data.message);
         toast.success(data.message);
         return data.success

@@ -18,7 +18,6 @@ const BuyersProducts = () => {
 
 
 
-  let val = ''
   useEffect(() => {
     dispatch(FetchBuyersProduct())
     setSearchBuyers(search);
@@ -49,7 +48,6 @@ useEffect(() => {
     return <Loading />
   }
 
-  // console.log("Men's Fashion" === "Men's Fashion")
 
   return (
     <>

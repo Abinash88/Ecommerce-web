@@ -1,11 +1,11 @@
 import { FetchWhislist } from "@/ReduxStore/AddToWhislist";
+import { GetWhislist } from "@/ReduxStore/GetWhislistProduct";
 import {  HeartIcon } from "@heroicons/react/24/outline";
-import { StarIcon, HeartIcon as Heart } from '@heroicons/react/24/solid'
-import React, {  useState } from "react";
+import {  HeartIcon as Heart } from '@heroicons/react/24/solid'
+import React, {  useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const WhisListSingleItem = ({ item }) => {
-  const [numbercount, setNumbercount] = useState(0);
   const { whislist } = useSelector(state => state.whislist)
   const { user } = useSelector(state => state.user)
   const dispatch = useDispatch();
@@ -13,9 +13,11 @@ const WhisListSingleItem = ({ item }) => {
   const SaveToWhislist = (user, product) => {
     if(!user) return toast.error('Please Login first!')
     dispatch(FetchWhislist({user, product}));
+    console.log(user)
+    dispatch(GetWhislist(user));
   }
 
-    console.log(item, 'singleitemwhislist')
+ 
 
   return (
     <div className="w-full flex md:h-[150px] h-auto md:overflow-hidden bg-gray-100">
@@ -39,7 +41,7 @@ const WhisListSingleItem = ({ item }) => {
           </h5>
           <div className="flex pb-2 md:pb-0 justify-center space-x-3">
           <div onClick={() => SaveToWhislist(user?.user?._id, item?._id)} className="md:mr-10 sm:mr-0 mt-5">
-              { whislist?.whislist?.acknowledged ?
+              { whislist?.whislist?.ProductId === item?._id ?
               <button><HeartIcon className='h-7 ' /></button>
               :
               <button><Heart className='h-7 text-red-600' /></button>

@@ -1,9 +1,11 @@
 import { Decrease, Increase, TurnToZero } from '@/ReduxStore/AddProductSlice';
 import { FetchWhislist } from '@/ReduxStore/AddToWhislist';
+import { GetCartTotalcount } from '@/ReduxStore/CartTotalCount';
+import { GetWhislist } from '@/ReduxStore/GetWhislistProduct';
 import { HeartIcon } from '@heroicons/react/24/outline';
 import { StarIcon, HeartIcon as Heart } from '@heroicons/react/24/solid'
 import { useRouter } from 'next/router';
-import React from 'react'
+import React, { useEffect } from 'react'
 import { toast } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -13,11 +15,17 @@ const ProductDetailPage = ({ item }) => {
   const { user } = useSelector(state => state.user)
   const { whislist } = useSelector(state => state.whislist)
 
-  console.log(whislist, 'whislist')
  const SaveToWhislist = (user, product) => {
   if(!user) return toast.error('Please Login first!')
   dispatch(FetchWhislist({user, product}));
+  dispatch(GetWhislist(user));
 }
+
+
+
+  useEffect(() => {
+  dispatch(GetWhislist(user?.user?._id));
+  },[])
 
   // adding data to cart 
   const AddDataToCart = async (id, userId) => {
@@ -38,13 +46,13 @@ const ProductDetailPage = ({ item }) => {
       const data = await res.json();
       if (!data.success) return toast.error(data.message);
       toast.success(data.message);
+      dispatch(GetCartTotalcount(user?.user?._id))
       dispatch(TurnToZero())
     } catch (err) {
       console.log(err)
     }
   }
-
-
+  console.log(whislist?.whislist)
   return (
     <div className='w-[94%] mx-auto sm:pb-0 pb-6 md:h-[80vh] h-auto relative mt-4 bg-gray-100 md:flex-row flex-col flex'>
       <div className="sm:w-[30%] sm:h-[80%] w-full">
@@ -64,10 +72,10 @@ const ProductDetailPage = ({ item }) => {
             </div>
 
             <div onClick={() => SaveToWhislist(user?.user?._id, item?._id)} className="md:mr-10 sm:mr-0 mt-5">
-              { whislist?.whislist?.acknowledged ?
-              <button><HeartIcon className='h-7 ' /></button>
-              :
+              { whislist?.whislist?.ProductId === item?._id ?
               <button><Heart className='h-7 text-red-600' /></button>
+              :
+              <button><HeartIcon className='h-7 ' /></button>
               }
             </div>
           </div>

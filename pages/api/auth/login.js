@@ -10,7 +10,6 @@ const handler = middlewareError(async (req, res) => {
     if (!email || !password) return ErrorMessage(res, 400, "please fill the following fields");
     
     await mongoDB();
-    console.log(email, password)
 
     let user = await Buyers.findOne({ email });
     if (!user) return ErrorMessage(res, 400, "No  users found! Please sign up first");

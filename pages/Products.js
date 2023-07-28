@@ -29,7 +29,6 @@ const Products = () => {
   };
   //fucntion for checking true to the checkbox of product so we can delete it
   const ProductCheck = async (id) => {
-    console.log('productcheck')
     dispatch(updateGet(id));
   };
   

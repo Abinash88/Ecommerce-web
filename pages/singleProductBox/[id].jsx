@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import Layout from "@/components/Layout";
 import Headers from "@/components/Headers";
-import ProductDetailItem from '@/pages/ProductDetailItem'
+import ProductDetailItem from '@/pages/ProductDetailItem';
 
 const singleProductBox = () => {
   const [ProductDetail, setProductDetail] = useState([]);
 
   const router = useRouter();
   const id = router.query.id;
+
   const GetProductDetails = async (id) => {
     try {
       const res = await fetch(`/api/ProductDetail/${id}`, {

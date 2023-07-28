@@ -6,7 +6,6 @@ const handler = middlewareError(async (req, res) => {
     if (req.method !== "GET") return ErrorMessage(res, 400, 'GET method only supported')
     const {id} = req.headers;
     const cart = await Cart.find({userId:id});
-    console.log(id, cart);
     const cartid = cart.map((item) => {
         return item.product
     })
