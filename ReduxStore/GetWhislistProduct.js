@@ -26,6 +26,7 @@ export default GetWhislistSlice.reducer;
 
 
 export const GetWhislist = createAsyncThunk('whislistdata/GetWhislist', async(ids) => {
+    console.log(ids)
     try {
         const res = await fetch('/api/FindWhislistItem',{
             method:'GET',

@@ -83,6 +83,9 @@ const Headers = () => {
     }
   }, [])
 
+  useEffect(() => {
+    // dispatch(GetWhislist(user?.user?._id));
+  },[])
 
   return (
     <>
@@ -103,7 +106,7 @@ const Headers = () => {
               className={`h-9  cursor-pointer`}
             />
           </div>
-          <div className=''>
+          <div className='sm:flex hidden '>
             <h2 className="text-[17px] font-semibold p-1 border-2 border-red-600 text-red-500">On Going Project</h2>
           </div>
           <nav ref={responsiveBar}
