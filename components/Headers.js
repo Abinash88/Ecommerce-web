@@ -72,11 +72,6 @@ const Headers = () => {
     if (user.success) {
       dispatch(GetCartTotalcount(user?.user?._id));
     }
-
-
-    if (status === 'loading') {
-      <Loading />
-    }
   }, [])
 
 
@@ -116,7 +111,7 @@ const Headers = () => {
                   Products
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link
                   className={`links text-gray-600 hover:text-black space-x-5 `}
                   href={"/Whislist"}
@@ -124,7 +119,7 @@ const Headers = () => {
                   <HeartIcon className="h-5" />
                   Whislist
                 </Link>
-              </li>
+              </li> */}
 
               <li>
                 <Link

@@ -95,7 +95,7 @@ const cartSingleItem = ({ item, cartItem }) => {
   }, []);
 
   return (
-    <div className="w-full flex md:h-[150px] h-auto md:overflow-hidden bg-gray-100">
+    <div className="w-full flex md:h-[150px] h-auto md:overflow-hidden border-b hover:bg-gray-50">
       <div className="w-[150px] h-full">
         <img className="h-full w-full" src={item?.image?.url} alt="" />
       </div>

@@ -16,9 +16,6 @@ const Whislist = () => {
         dispatch(GetWhislist(user?.user?._id));
     },[]);
 
-    if (whislistStatus === 'loading') {
-        return <Loading />
-    }
     return (
         <div className=''>
             <Headers  />

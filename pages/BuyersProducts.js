@@ -44,9 +44,6 @@ useEffect(() => {
   dispatch(Catagory({catagory:'',Product:search }))
 }, [])
  
-  if (status === 'loading') {
-    return <Loading />
-  }
 
 
   return (

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import WhisListSingleItem from './WhisListSingleItem';
 import { useDispatch, useSelector } from 'react-redux';
+// import WhisListSingleItem from './WhisListSingleItem';
 
 const WhislistBody = ({whislistdata}) => {
     const {user} = useSelector(state => state.user)
@@ -17,12 +17,12 @@ const WhislistBody = ({whislistdata}) => {
         <>
             <div className="md:w-[70%] w-[95%] h-full  overflow-auto relative m-auto p-3 flex flex-col gap-[20px]">
                 {whislistdata?.product?.map((item) => {
-                    return (
-                        <WhisListSingleItem
-                            key={item._id}
-                            item={item}
-                        />
-                    );
+                    // return (
+                    //     <WhisListSingleItem
+                    //         key={item._id}
+                    //         item={item}
+                    //     />
+                    // );
                 })}
             </div>
         </>
