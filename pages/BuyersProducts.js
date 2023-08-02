@@ -67,7 +67,7 @@ useEffect(() => {
             <ListBulletIcon onClick={() => setSetGrid(false)} className={` h-8 cursor-pointer text-gray-400 hover:text-gray-500`} />
           </div>
         </div>
-        <div style={{ height: 'calc(100vh - 55px - 60px)' }} className={` w-full p-4 overflow-auto  ${searchBuyers?.length > 0 ? ` grid  ${setGrid ? 'grid-cols-[repeat(auto-fill,minmax(200px,1fr))]  ' : ' grid-rows-auto'}  gap-4` :  'h-full w-full grid-cols-1'} `}>
+        <div style={{ height: 'calc(100vh - 55px - 60px)' }} className={` w-full p-4 overflow-auto  ${searchBuyers?.length > 0 ? ` grid  ${setGrid ? 'grid-cols-[repeat(auto-fill,minmax(300px,1fr))]  ' : ' grid-rows-auto'}  gap-7` :  'h-full w-full grid-cols-1'} `}>
           {
             searchBuyers?.length > 0 ? searchBuyers?.map((item) => {
               return (

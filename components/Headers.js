@@ -2,7 +2,6 @@ import Link from "next/link";
 import {
   CursorArrowRippleIcon,
   HeartIcon,
-  BanknotesIcon,
   UserIcon,
   Bars3Icon,
   ShoppingCartIcon,
@@ -15,7 +14,6 @@ import SignUpBox from "./smallPice/SignUpBox";
 import { GetCartTotalcount } from "@/ReduxStore/CartTotalCount";
 import { LogoutHandler } from "@/ReduxStore/LogoutSlice";
 import Loading from "@/pages/Loading";
-import { GetWhislist } from "@/ReduxStore/GetWhislistProduct";
 
 const Headers = () => {
   // getting user data from redux userslice
@@ -29,10 +27,8 @@ const Headers = () => {
   const { cartItem } = useSelector((state) => state.cartItem);
   const { CartCountItem } = useSelector((state) => state.CartCountItem);
   const { user, status } = useSelector((state) => state.user);
-  const [productCount, setProductCount] = useState();
   const { logout } = useSelector(state => state.logout)
   const { whislistdata, whislistStatus } = useSelector(state => state.whislistdata)
-  const { whislist } = useSelector(state => state.whislist)
 
 
   const HandleSidebar = () => {
@@ -83,20 +79,17 @@ const Headers = () => {
     }
   }, [])
 
-  useEffect(() => {
-    // dispatch(GetWhislist(user?.user?._id));
-  },[])
 
   return (
     <>
-      <div className="w-screen   h-auto bg-gray-100">
-        <div className={`flex py-2 md:py-0 justify-between items-center px-10`}>
+      <div className="w-screen  flex items-center  h-[80px] ">
+        <div className={`flex py-2  md:py-0 justify-between w-full items-center px-10`}>
           <div className="flex  items-center justify-start space-x-2 ">
             {router.pathname === '/' || router.pathname === '/singleProductBox/648fc14a59f4d3329e31d88d' ? null :
               <Bars3Icon onClick={HandleSidebar} className="h-8" />
             }
-            <Link href={"/"}>
-              <h2 className="logo">Ecom-web</h2>
+            <Link className="text-[22px] " href={"/"}>
+              <span className="logo text-black font-bold">Ecom-web</span>
             </Link>
           </div>
           <div className={`absolute right-10 md:hidden block`}>
@@ -116,7 +109,7 @@ const Headers = () => {
             <ul className="flex flex-col md:flex-row ">
               <li>
                 <Link
-                  className={`links text-gray-600 hover:bg-blue-600 hover:text-white space-x-5 `}
+                  className={`links text-gray-600 hover:text-black space-x-5 `}
                   href={"/"}
                 >
                   <CursorArrowRippleIcon className="h-5 " />
@@ -125,7 +118,7 @@ const Headers = () => {
               </li>
               <li>
                 <Link
-                  className={`links text-gray-600 hover:bg-blue-600 hover:text-white space-x-5 `}
+                  className={`links text-gray-600 hover:text-black space-x-5 `}
                   href={"/Whislist"}
                 >
                   <HeartIcon className="h-5" />
@@ -135,7 +128,7 @@ const Headers = () => {
 
               <li>
                 <Link
-                  className={`links buttonlink text-gray-600 hover:bg-blue-600 hover:text-white space-x-5 `}
+                  className={`links buttonlink text-gray-600 hover:text-black space-x-5 `}
                   href={"/Cart"}
                 >
                   <ShoppingCartIcon className="h-5" />
@@ -150,7 +143,7 @@ const Headers = () => {
                 <button
                   onClick={() => dispatch(AccountIn())}
                   ref={AccountBtn}
-                  className={`links  text-gray-600 hover:bg-blue-600 hover:text-white  space-x-5 ${popupAccount ? "bg-blue-600 text-white" : ""
+                  className={`links  text-gray-600 hover:text-black  space-x-5 ${popupAccount ? "bg-blue-600 text-white" : ""
                     }`}
                 >
                   <UserIcon className="h-5" />

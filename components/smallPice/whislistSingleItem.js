@@ -3,7 +3,7 @@ import { GetWhislist } from "@/ReduxStore/GetWhislistProduct";
 import {  HeartIcon } from "@heroicons/react/24/outline";
 import {  HeartIcon as Heart } from '@heroicons/react/24/solid'
 import Link from "next/link";
-import React, {  useEffect, useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const WhisListSingleItem = ({ item }) => {

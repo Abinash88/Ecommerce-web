@@ -14,13 +14,7 @@ export default function Home() {
   const router = useRouter();
   const { user, status } = useSelector((state) => state.user);
  
-  useEffect(() => {
-    console.log(status)
-    if(status === 'loading'){
-       <Loading/>;
-    }
-  }, [user]);
-
+ 
 
 
   return (

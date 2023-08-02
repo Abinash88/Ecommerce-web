@@ -8,11 +8,11 @@ const SingleBuyerItem = ({ item, setGrid }) => {
  
   return (
     <div
-      className={`hover:shadow-lg cursor-pointer ${!setGrid ? "flex flex-start " : "h-[350px]"
-        }  border  rounded-sm `}
+      className={`hover:shadow-lg cursor-pointer ${!setGrid ? "flex flex-start " : "h-[450px]"
+        }    rounded-sm `}
     >
       <div
-        className={`  ${!setGrid ? "w-[200px] h-[90%] my-auto ml-3" : "w-full h-[50%]"
+        className={`  ${!setGrid ? "w-[200px] h-[90%] my-auto ml-3" : "w-full h-[70%]"
           }`}
       >
         <img
@@ -28,7 +28,7 @@ const SingleBuyerItem = ({ item, setGrid }) => {
             <div className="">
               <h4 onClick={() => router.push(`/singleProductBox/${item._id}`)} 
                 className={`${!setGrid ? "mb-2" : ""
-                  } text-[15px] hover:underline mr-3 mb-3 capitalize text-blue-500 font-semibold`}
+                  } text-[15px] hover:underline mr-3 mb-3 capitalize text-gray-800 font-semibold`}
               >
                 {item?.name?.substring(0, 50)}...
               </h4>

@@ -20,12 +20,6 @@ const SignUpBox = ({ AccountBtn, Logoutbox }) => {
     dispatch(getUser());
   },[]);
 
-  useEffect(() => {
-    if(status === 'loading') {
-       <Loading/>
-    }
-  }, [user]);
-
 
 
   const OpenFile = () => {
@@ -62,10 +56,10 @@ const SignUpBox = ({ AccountBtn, Logoutbox }) => {
     <div
       ref={loginboxOutClick}
       className={`md:absolute relative ${
-        isAccount ? " h-[300px] " : "h-[0] "
-      } overflow-hidden transition-all duration-300 w-full md:w-[250px]   md:top-[3.4rem] bg-gray-200  right-0`}
+        isAccount ? " h-[300px] border" : "h-[0] "
+      } overflow-hidden transition-all duration-300 w-full md:w-[250px]   md:top-[3.4rem] bg-white   right-0`}
     >
-      <div className="flex border-b items-center px-2 py-4 justify-start">
+      <div className="flex  items-center px-2 py-4 justify-start">
         <div onClick={OpenFile} className="rounded-full w-12 h-12 bg-black">
           <img
             className="rounded-full w-full h-full"
@@ -109,7 +103,7 @@ const SignUpBox = ({ AccountBtn, Logoutbox }) => {
             </button>
           ) : (
             <button
-              className="px-5 py-2 w-full rounded-md border border-gray-300 text-black hover:bg-gray-300 font-semibold "
+              className="px-5 py-2 w-full rounded-md border border-gray-300 text-black hover:bg-gray-100 font-semibold "
               onClick={() => router.push("/Login")}
             >
               LogIn

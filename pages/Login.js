@@ -65,7 +65,7 @@ const Login = () => {
             borderRadius: "20px",
           }}
           action={'#'}
-          className="loginform flex flex-col rounded-md  items-center w-[400px] rounded-sm"
+          className="loginform flex flex-col   items-center w-[400px] rounded-sm"
         >
           <h2 className="text-center text-[26px] font-bold text-gray-600 my-5">
             Login{" "}

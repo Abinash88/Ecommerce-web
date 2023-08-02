@@ -12,13 +12,17 @@
 
 
 .loginform{
-  background-color: #ebedf871;
+  background-color: #ffffff;
+}
+
+.loginform input {
+  background: whitesmoke;
 }
 
 
 .Logo{
-  font-weight: 700;
-  color: #4c4c6b;
+  font-weight: 800;
+  color: #000008 !important;
   font-size: 28px;
   padding: 10px 20px;
   border-radius: 10px;
@@ -87,8 +91,8 @@
 
 .logo{
   font-size: 25px;
-  font-weight: 400;
-  color: #215da1;
+  font-weight: 700;
+  color: #21272e;
 }
 
 .links{

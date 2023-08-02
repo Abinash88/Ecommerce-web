@@ -6,8 +6,8 @@ const handler = middlewareError(async(req, res) => {
     const {userid, productid} = req.headers;
     if(userid && productid) {
         const data = await Whislist.findOne({ProductId:productid, userId:userid});
-        console.log(data);
-        if(!data) {
+            console.log(data,'added')
+            if(!data) {
             const whislist = await Whislist.create({
                 userId:userid,
                 ProductId:productid,

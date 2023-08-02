@@ -7,7 +7,6 @@ const { middlewareError } = require("@/middleware/Error");
 const handler = middlewareError(async(req, res) => {
     if(req.method !== 'GET' ) return res.status(400).json({success:false, message:'Get Method only allowed'})
     const  bothid = req.headers;
-    console.log(bothid?.userid)
     if(bothid?.userid) {
         const ids = await Whislist.find({userId:bothid.userid});
         const data =  await Promise.all(ids.map((item) => {
