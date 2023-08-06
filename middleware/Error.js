@@ -8,6 +8,6 @@ export const ErrorMessage = async (res, statuscode = 500, message = 'Internal Se
 
 export const middlewareError = (passedFunc) => (req, res) => {
     return Promise.resolve(passedFunc(req, res)).catch(err => {
-        return ErrorMessage(res, 500, err.message,'middleware error');
+        return ErrorMessage(res, 500, err.message);
     })
 }

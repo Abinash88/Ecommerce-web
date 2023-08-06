@@ -1,5 +1,5 @@
 .loginback {
-  background: url("../public/finance-elements-frame.jpg");
+  background: linear-gradient(rgba(2, 4, 27, 0.418), rgba(2, 4, 14, 0.425)), url("../public/background.jpg");
   width: 100%;
   min-height: 100vh;
   background-position: center;

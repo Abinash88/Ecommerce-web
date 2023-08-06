@@ -8,11 +8,11 @@ const SingleBuyerItem = ({ item, setGrid }) => {
  
   return (
     <div
-      className={`hover:shadow-lg cursor-pointer ${!setGrid ? "flex flex-start " : "h-[350px]"
-        }  border  rounded-sm `}
+      className={`hover:shadow-lg cursor-pointer ${!setGrid ? "flex flex-start " : "h-[450px]"
+        }    rounded-sm `}
     >
       <div
-        className={`  ${!setGrid ? "w-[200px] h-[90%] my-auto ml-3" : "w-full h-[50%]"
+        className={`  ${!setGrid ? "w-[200px] h-[90%] my-auto ml-3" : "w-full h-[70%]"
           }`}
       >
         <img
@@ -28,13 +28,13 @@ const SingleBuyerItem = ({ item, setGrid }) => {
             <div className="">
               <h4 onClick={() => router.push(`/singleProductBox/${item._id}`)} 
                 className={`${!setGrid ? "mb-2" : ""
-                  } text-[14px] hover:underline mr-3 mb-3 capitalize text-blue-500 font-semibold`}
+                  } text-[15px] hover:underline mr-3 mb-3 capitalize text-gray-800 font-semibold`}
               >
-                {item?.name?.substring(0, 20)}...
+                {item?.name?.substring(0, 50)}...
               </h4>
 
               <div className="flex items-center space-x-4 my-2">
-                <h5 className="text-[20px] font-light text-red-500 font-semibold">
+                <h5 className="text-[20px] font-light text-red-500 ">
                   ${item?.price}
                 </h5>
                 <h5 className="line-through text-gray-500 font-[13px]">
@@ -50,14 +50,9 @@ const SingleBuyerItem = ({ item, setGrid }) => {
                 {item?.description}
               </div>
             </div>
-            <div className="text-[12px] text-gray-500 font-semibold capitalize">
-              <h4>{item?.country}</h4>
-            </div>
+            
           </div>
           <div className="flex justify-between">
-            <button  className="text-[13px] hover:bg-gray-100 border  font-semibold py-1 rounded-sm px-2 mt-2">
-              Add To Cart
-            </button>
             <span className="flex items-center">
               <StarIcon className="h-2.5 text-red-500" />
               <StarIcon className="h-2.5 text-red-500" />
@@ -66,6 +61,9 @@ const SingleBuyerItem = ({ item, setGrid }) => {
               <StarIcon className="h-2.5 text-red-500" />
               <span className="text-[12px]  text-gray-500 ">(4)</span>
             </span>
+            <div className="text-[12px] text-gray-500 font-semibold capitalize">
+              <h4>{item?.country}</h4>
+            </div>
           </div>
         </div>
       </div>

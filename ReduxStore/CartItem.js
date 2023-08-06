@@ -26,12 +26,13 @@ export const CartItemSlice = createSlice({
 export default CartItemSlice.reducer;
 
     // fetching products in seller mode in cart for seleccted cart items
-export const getCartItem = createAsyncThunk('cartItem/getCartItem', async ()=> {
+export const getCartItem = createAsyncThunk('cartItem/getCartItem', async (userid)=> {
     try {
-      const res = await fetch("http://localhost:3000/api/GetAddCart", {
+      const res = await fetch("/api/GetAddCart", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
+          userid
         },
       });
 

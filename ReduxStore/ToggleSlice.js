@@ -3,10 +3,10 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     isToggle:true,
     isAccount:false,
-    isCatagory:false,
+    isCagatory:false,
 };
 
-const InitialToggle = createSlice({
+export const InitialToggle = createSlice({
     name:'login',
     initialState,
     reducers:{
@@ -21,8 +21,9 @@ const InitialToggle = createSlice({
             }
          },
          OpenCatagory(state, action) {
-            state.isCatagory = !state.isCatagory;
+            state.isCagatory = !state.isCagatory
          }
+        
     }
 })
 

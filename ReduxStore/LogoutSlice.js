@@ -32,15 +32,12 @@ export const LogOutSlice = createSlice({
 export default LogOutSlice.reducer;
 
 export const LogoutHandler =createAsyncThunk('logout/LogoutHandler', async () => {
-    const router = useRouter();
     try {
 
-        const res = await axios.get('http://localhost:3000/api/auth/logout')
+        const res = await axios.get('/api/auth/logout')
         const data = res.data;
-        console.log(data);
         if (!data.message) console.log(data.message);
         toast.success(data.message);
-        router.reload();
         return data.success
     } catch (err) {
         console.log(err.message);

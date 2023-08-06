@@ -5,9 +5,10 @@ const handler = middlewareError(async (req, res ) => {
     if(req.method !== "GET" ) return ErrorMessage(res, 400, 'GET method only supported!')
 
     const {id} = req.query;
-    const counts = await Cart.find({product:id})
+    const userId = req.headers;
+    const counts = await Cart.find({product:id, userId:userId.id})
     res.status(200).json({succcess:true, message:'successfully get data', counts})
 
 })
 
-export default handler;
+export default handler; 

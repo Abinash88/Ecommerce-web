@@ -28,7 +28,7 @@ export default ProductSlice.reducer;
     // fetching products in the seller mode for seller details 
 export const getProducts = createAsyncThunk('products/getProducts', async ()=> {
     try{
-        const res = await fetch(`http://localhost:3000/api/GetProducts`,{
+        const res = await fetch(`/api/GetProducts`,{
           method: 'GET',
           headers:{
             "Content-Type": "application/json"

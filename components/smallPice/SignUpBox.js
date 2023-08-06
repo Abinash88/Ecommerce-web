@@ -1,23 +1,25 @@
 import Link from "next/link";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AccountIn } from "@/ReduxStore/ToggleSlice";
 import { useRouter } from "next/router";
-import { getProducts } from "@/ReduxStore/ProductDataSlice";
 import { getUser } from "@/ReduxStore/UserSlice";
+import Loading from "@/pages/Loading";
 
 const SignUpBox = ({ AccountBtn, Logoutbox }) => {
   const loginboxOutClick = useRef(null);
   const [ImageBox, setImageBox] = useState("");
   const inputImageFile = useRef(null);
-  const { user } = useSelector((state) => state.user);
+  const { user, status } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const { isAccount } = useSelector((state) => state.toggle);
   const router = useRouter();
 
+
   useEffect(() => {
     dispatch(getUser());
   },[]);
+
 
 
   const OpenFile = () => {
@@ -54,10 +56,10 @@ const SignUpBox = ({ AccountBtn, Logoutbox }) => {
     <div
       ref={loginboxOutClick}
       className={`md:absolute relative ${
-        isAccount ? " h-[300px] " : "h-[0] "
-      } overflow-hidden transition-all duration-300 w-full md:w-[250px] md:top-0  md:top-[3.4rem] bg-gray-200  right-0`}
+        isAccount ? " h-[300px] border" : "h-[0] "
+      } overflow-hidden transition-all duration-300 w-full md:w-[250px]   md:top-[3.4rem] bg-white   right-0`}
     >
-      <div className="flex border-b items-center px-2 py-4 justify-start">
+      <div className="flex  items-center px-2 py-4 justify-start">
         <div onClick={OpenFile} className="rounded-full w-12 h-12 bg-black">
           <img
             className="rounded-full w-full h-full"
@@ -73,10 +75,10 @@ const SignUpBox = ({ AccountBtn, Logoutbox }) => {
         </div>
         <div className="text-left ml-3  ">
           <h4 className="font-bold text-[14px] text-gray-600 ">
-            {user.success ? user.message.name : "User"}
+            {user.success ? user.user.name : "User"}
           </h4>
           <h5 className="font-semibold text-[13px]">
-            {user.success ? user.message.email : "email"}
+            {user.success ? user.user.email : "email"}
           </h5>
         </div>
       </div>
@@ -95,13 +97,13 @@ const SignUpBox = ({ AccountBtn, Logoutbox }) => {
           {user.success ? (
             <button
               className="px-5 py-2 w-full rounded-md border border-gray-400 text-black hover:bg-gray-300 font-semibold "
-              onClick={Logoutbox}
+              onClick={() => Logoutbox()}
             >
               Logout
             </button>
           ) : (
             <button
-              className="px-5 py-2 w-full rounded-md border border-gray-300 text-black hover:bg-gray-300 font-semibold "
+              className="px-5 py-2 w-full rounded-md border border-gray-300 text-black hover:bg-gray-100 font-semibold "
               onClick={() => router.push("/Login")}
             >
               LogIn

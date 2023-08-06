@@ -9,7 +9,8 @@ const handler = middlewareError(async(req, res) => {
     if(!user) return ErrorMessage(res, 400, "Please Login first!")
     res.status(200).json({
         success:true,
-        message:user,
+        message:'Get user successfully',
+        user
     })
 })
 

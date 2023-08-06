@@ -14,13 +14,13 @@ const SideBar = () => {
     <>
       <div
         style={{ height: "calc(100vh - 54px)" }}
-        className={`relative ${pathname === '/' || pathname === 'singleProductBox'? 'hidden': ''} bg-gray-100 overflow-auto transition-left duration-300 overflow-hidden ${
+        className={`relative ${pathname === '/' || pathname === 'singleProductBox'? 'hidden': ''} bg-gray-100 overflow-auto transition-left duration-300 ${
           isToggle ? "w-[300px] left-[0] p-3" : "w-[0px] left-[-100%] "
         }  shadow`}
       >
         <div  className="w-full h-full bg-white border rounded-md p-3">
           <div style={{backgroundColor:'#e1fbff'}}   className="pl-2  border-b  rounded-sm border-gray-300  py-2">
-            <h3 className="font-bold text-gray-600  text-[18px] text-gray-600">Manage Shop</h3>
+            <h3 className="font-bold text-gray-600  text-[18px] ">Manage Shop</h3>
           </div>
 
           <div className="flex items-center mt-3 ">

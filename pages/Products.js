@@ -29,7 +29,6 @@ const Products = () => {
   };
   //fucntion for checking true to the checkbox of product so we can delete it
   const ProductCheck = async (id) => {
-    console.log('productcheck')
     dispatch(updateGet(id));
   };
   
@@ -93,19 +92,19 @@ const Products = () => {
                         checked={setCheck}
                       />
                     </th>
-                    <th className="border border-2 border-gray-200 bg-gray-100">
+                    <th className=" border-2 border-gray-200 bg-gray-100">
                       ID
                     </th>
-                    <th className="border border-2 border-gray-200 bg-gray-100">
+                    <th className=" border-2 border-gray-200 bg-gray-100">
                       Name
                     </th>
-                    <th className="border border-2 border-gray-200 bg-gray-100">
+                    <th className=" border-2 border-gray-200 bg-gray-100">
                       PRICE
                     </th>
-                    <th className="border border-2 border-gray-200 bg-gray-100">
+                    <th className=" border-2 border-gray-200 bg-gray-100">
                       DESCRIPTION
                     </th>
-                    <th className="border border-2 border-gray-200 bg-gray-100">
+                    <th className=" border-2 border-gray-200 bg-gray-100">
                       IMAGE
                     </th>
                   </tr>
@@ -114,9 +113,7 @@ const Products = () => {
                   {productDatas?.data?.map((product) => {
                     return (
                       <>
-                        {status === "loading" ? (
-                          <Loading />
-                        ) : (
+                        {(
                           <tr key={product._id} className="text-center">
                             <td className="border px-4 py-2">
                               <input

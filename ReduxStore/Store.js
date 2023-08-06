@@ -6,8 +6,11 @@ import BuyersSlice from './FetchProductsSlice'
 import UserSlice from "./UserSlice";
 import ProductSlice from "./ProductDataSlice";
 import countsSlice  from "./AddProductSlice";
-import CartDataSlice  from "./CartData";
 import CartItemSlice  from "./CartItem";
+import GetCartCount from "./CartTotalCount";
+import WhislistSlice from "./AddToWhislist";
+import CatagorySlice from "./CatagorySlice";
+import GetWhislistSlice from "./GetWhislistProduct";
 
 const store = configureStore({
     reducer:{
@@ -18,8 +21,11 @@ const store = configureStore({
         logout:LogOutSlice,
         buyersProduct:BuyersSlice,
         counts:countsSlice,
-        cartdata:CartDataSlice,
         cartItem:CartItemSlice,
+        CartCountItem:GetCartCount,
+        whislist:WhislistSlice,
+        catagory:CatagorySlice,
+        whislistdata:GetWhislistSlice,
     },
 })
 
