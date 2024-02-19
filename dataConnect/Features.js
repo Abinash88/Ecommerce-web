@@ -11,7 +11,6 @@ export const mongoDB = async () => {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
-    console.log(`Database is connected `)
 }
 
 

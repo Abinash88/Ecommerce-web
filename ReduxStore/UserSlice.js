@@ -33,6 +33,7 @@ export const getUser = createAsyncThunk("User/getUser", async () => {
     try{
         const res = await axios.get("/api/ProfileData");
         const data = res.data;
+        console.log(data);
         if(!data.success)return [];
         return data;
     }catch(err) {

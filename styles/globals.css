@@ -130,3 +130,13 @@ input:focus{
   display: grid;
 
 } */
+
+@media screen and (max-height:800px) {
+  .left{
+      margin-top: 100px !important;
+  }
+  
+  .aboutpage{
+    margin-bottom: 100px !important;
+  }
+}

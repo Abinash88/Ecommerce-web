@@ -1,7 +1,6 @@
 import { jwtVerify } from "@/dataConnect/Features";
 import { ErrorMessage, middlewareError } from "@/middleware/Error";
 import { Products } from "@/myModel/DataSchema";
-import bodyParser from "body-parser";
 
 
 const handler = middlewareError(async(req, res) => {

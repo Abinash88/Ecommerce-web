@@ -3,7 +3,7 @@ import React from 'react'
 
 const AboutPage = () => {
     return (
-        <div className='md:h-[60vh] h-auto md:mb-0 flex-col items-center flex mb-4 w-full'>
+        <div className='md:min-h-[60vh] h-auto   aboutpage flex-col items-center flex mb-0 w-full'>
             <h2 className='text-[45px] font-bold  mb-9'>Best Serivces</h2>
             <div className="w-[90%] md:flex grid cursor-pointer mx-auto">
                 <div className="flex-1 hover:bg-gray-100 px-10  flex flex-col items-center justify-start">

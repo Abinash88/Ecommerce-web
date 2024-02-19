@@ -30,7 +30,6 @@ const Headers = () => {
   const { logout } = useSelector(state => state.logout)
   const { whislistdata, whislistStatus } = useSelector(state => state.whislistdata)
 
-
   const HandleSidebar = () => {
     dispatch(Togglein());
   }

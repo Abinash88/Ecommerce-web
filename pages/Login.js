@@ -37,6 +37,7 @@ const Login = () => {
 
       const data = await res.json();
       setIsLoading(false);
+      console.log(data);
       if (!data.success) return toast.error(data.message);
       toast.success(data.message);
       router.push('/')

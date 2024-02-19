@@ -23,7 +23,7 @@ const Home = () => {
   return (
     <>
       <Headers />
-      <div style={{ height: 'calc(100vh - 55px )' }} className="flex flex-col w-[100%] ">
+      <div className="flex flex-col w-[100%] ">
         <div className=''>
           <HeroPage/>
         </div>
